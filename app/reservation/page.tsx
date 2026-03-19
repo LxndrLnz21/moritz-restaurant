@@ -185,7 +185,7 @@ export default function ReservationPage() {
                             name="privacy"
                             required
                             className="mt-1 h-4 w-4 rounded border-black/20 accent-[#8E9A87]"
-                        />
+                        /> <span className="text-red-500">*</span>
                         <span>
                             Ich habe die{" "}
                             <Link href="/datenschutz" className="underline underline-offset-4">
@@ -264,7 +264,7 @@ export default function ReservationPage() {
                 </p>
                 <div className="space-y-1 text-base leading-7">
                   <a href="tel:+4915129722874" className="block transition hover:opacity-70">
-                    015129722874
+                    +49(0)15129722874
                   </a>
                   <a
                     href="mailto:restaurant.moritz@icloud.com"
