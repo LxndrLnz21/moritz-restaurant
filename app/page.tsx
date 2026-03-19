@@ -1,65 +1,128 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="bg-[#F3EEE7] text-[#1A1A1A]">
+      <section className="mx-auto flex min-h-[calc(100vh-80px)] max-w-6xl flex-col items-center justify-center px-6 py-20 text-center">
+        <p className="mb-5 font-[var(--font-montserrat)] text-xs uppercase tracking-[0.35em] text-[#7E8F7B] md:text-sm">
+          Restaurant in Binz
+        </p>
+
+        <h1 className="mb-6 max-w-4xl font-[var(--font-playfair)] text-5xl leading-none md:text-7xl lg:text-8xl">
+          Moritz.
+        </h1>
+
+        <p className="mb-6 font-[var(--font-montserrat)] text-lg tracking-[0.12em] text-[#2C2C2C] md:text-2xl">
+          Essen · bei · Freunden
+        </p>
+
+        <p className="mb-10 max-w-2xl font-[var(--font-montserrat)] text-base leading-7 text-[#4D4D4D] md:text-lg">
+          Moderne deutsch-europäische Küche in entspannter Atmosphäre.
+          Hochwertig, herzlich und ein Ort für gemeinsame Abende in Binz.
+        </p>
+
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <Link
+            href="/reservation"
+            className="rounded-full bg-[#8E9A87] px-7 py-3 font-[var(--font-montserrat)] text-sm font-medium text-white transition hover:opacity-90"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Tisch reservieren
+          </Link>
+
+          <Link
+            href="/menu"
+            className="rounded-full border border-black/15 px-7 py-3 font-[var(--font-montserrat)] text-sm font-medium transition hover:bg-black/5"
           >
-            Documentation
-          </a>
+            Speisekarte ansehen
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="border-t border-black/10 bg-[#B7BDAF]">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-2 md:items-center">
+          <div>
+            <p className="mb-3 font-[var(--font-montserrat)] text-xs uppercase tracking-[0.3em] text-[#6E766A]">
+              Küche & Atmosphäre
+            </p>
+            <h2 className="mb-6 font-[var(--font-playfair)] text-3xl md:text-5xl">
+              Rustikal gedacht,
+              <br />
+              modern serviert.
+            </h2>
+          </div>
+
+          <div>
+            <p className="font-[var(--font-montserrat)] text-base leading-8 text-[#3F463D] md:text-lg">
+              Moritz. steht für genussvolle Abende, ehrliche Gastlichkeit und
+              eine Küche, die Vertrautes modern interpretiert. Für Freunde,
+              Familien, Gäste und alle, die gutes Essen in ruhiger, stilvoller
+              Umgebung schätzen.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div className="flex h-full flex-col justify-between rounded-3xl border border-black/10 bg-[#B7BDAF]/50 p-8">
+            <div>
+              <h3 className="mb-4 font-[var(--font-playfair)] text-2xl">
+                Speisekarte
+              </h3>
+              <p className="mb-6 font-[var(--font-montserrat)] leading-7 text-[#4D4D4D]">
+                Entdecke unsere aktuelle Auswahl von Vorspeisen,
+                vegetarischen Gerichten, Fisch, Fleisch und Dessert.
+              </p>
+            </div>
+
+            <Link
+              href="/menu"
+              className="font-[var(--font-montserrat)] text-sm font-medium underline underline-offset-4"
+            >
+              Zur Speisekarte
+            </Link>
+          </div>
+
+          <div className="flex h-full flex-col justify-between rounded-3xl border border-black/10 bg-[#B7BDAF]/50 p-8">
+            <div>
+              <h3 className="mb-4 font-[var(--font-playfair)] text-2xl">
+                Reservierung
+              </h3>
+              <p className="mb-6 font-[var(--font-montserrat)] leading-7 text-[#4D4D4D]">
+                Reserviere deinen Tisch bequem online oder kontaktiere uns
+                direkt für deine Anfrage.
+              </p>
+            </div>
+
+            <Link
+              href="/reservation"
+              className="font-[var(--font-montserrat)] text-sm font-medium underline underline-offset-4"
+            >
+              Jetzt anfragen
+            </Link>
+          </div>
+
+          <div className="flex h-full flex-col justify-between rounded-3xl border border-black/10 bg-[#B7BDAF]/50 p-8">
+            <div>
+              <h3 className="mb-4 font-[var(--font-playfair)] text-2xl">
+                Kontakt
+              </h3>
+              <p className="mb-6 font-[var(--font-montserrat)] leading-7 text-[#4D4D4D]">
+                Margaretenstraße 18, 18609 Binz
+                <br />
+                Täglich ab 17:00 Uhr geöffnet
+              </p>
+            </div>
+
+            <Link
+              href="/contact"
+              className="font-[var(--font-montserrat)] text-sm font-medium underline underline-offset-4"
+            >
+              Mehr erfahren
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
