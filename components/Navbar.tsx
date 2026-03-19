@@ -2,13 +2,24 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-black/10 bg-[#B7BDAF]/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-black/10 bg-[#B7BDAF]/95 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
         <Link href="/" className="font-serif text-2xl md:text-3xl">
           Moritz.
         </Link>
 
-        <nav className="hidden items-center gap-6 font-[var(--font-montserrat)] text-sm md:flex md:text-[15px]">
+        {/* Mobile */}
+        <div className="flex items-center md:hidden">
+          <Link
+            href="/reservation"
+            className="rounded-full bg-[#8E9A87] px-4 py-2 font-[var(--font-montserrat)] text-sm font-medium text-white transition hover:opacity-90"
+          >
+            Reservierung
+          </Link>
+        </div>
+
+        {/* Desktop */}
+        <nav className="hidden items-center gap-8 font-[var(--font-montserrat)] text-sm md:flex md:text-[15px]">
           <Link href="/menu" className="transition hover:opacity-70">
             Speisekarte
           </Link>
@@ -20,7 +31,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/reservation"
-            className="rounded-full bg-[#7E8F7B] px-5 py-2 text-white transition hover:opacity-90"
+            className="rounded-full bg-[#8E9A87] px-5 py-2 text-white transition hover:opacity-90"
           >
             Reservierung
           </Link>
