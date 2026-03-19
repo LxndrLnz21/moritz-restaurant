@@ -1,10 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function ReservationPage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formStartedAt, setFormStartedAt] = useState("");
+
+  useEffect(() => {
+    setFormStartedAt(String(Date.now()));
+  }, []);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -24,6 +29,8 @@ export default function ReservationPage() {
       time: formData.get("time"),
       message: formData.get("message"),
       privacy: formData.get("privacy"),
+      website: formData.get("website"),
+      formStartedAt: formData.get("formStartedAt"),
     };
 
     try {
@@ -45,6 +52,7 @@ export default function ReservationPage() {
 
       setStatus("success");
       form.reset();
+      setFormStartedAt(String(Date.now()));
     } catch (error) {
       console.error("Frontend-Fehler:", error);
       setStatus("error");
@@ -72,6 +80,19 @@ export default function ReservationPage() {
         <div className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
           <section className="rounded-3xl border border-black/10 bg-white/60 p-6 shadow-sm md:p-8">
             <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              <input type="hidden" name="formStartedAt" value={formStartedAt} />
+
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]">
@@ -179,23 +200,25 @@ export default function ReservationPage() {
 
               <div className="flex flex-col gap-4 border-t border-black/10 pt-6">
                 <div className="rounded-2xl border border-black/10 bg-[#F8F5EF] p-4">
-                    <label className="flex items-start gap-3 font-[var(--font-montserrat)] text-sm leading-6 text-[#4D4D4D]">
-                        <input
-                            type="checkbox"
-                            name="privacy"
-                            required
-                            className="mt-1 h-4 w-4 rounded border-black/20 accent-[#8E9A87]"
-                        /> <span className="text-red-500">*</span>
-                        <span>
-                            Ich habe die{" "}
-                            <Link href="/datenschutz" className="underline underline-offset-4">
-                                Datenschutzerklärung
-                            </Link>{" "}
-                            gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner
-                            Reservierungsanfrage zu.
-                        </span>
-                    </label>
+                  <label className="flex items-start gap-3 font-[var(--font-montserrat)] text-sm leading-6 text-[#4D4D4D]">
+                    <input
+                      type="checkbox"
+                      name="privacy"
+                      required
+                      className="mt-1 h-4 w-4 rounded border-black/20 accent-[#8E9A87]"
+                    />
+                    <span className="text-red-500">*</span>
+                    <span>
+                      Ich habe die{" "}
+                      <Link href="/datenschutz" className="underline underline-offset-4">
+                        Datenschutzerklärung
+                      </Link>{" "}
+                      gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner
+                      Reservierungsanfrage zu.
+                    </span>
+                  </label>
                 </div>
+
                 <button
                   type="submit"
                   disabled={status === "loading"}

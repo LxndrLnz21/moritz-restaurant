@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 type ReservationData = {
@@ -10,9 +10,28 @@ type ReservationData = {
   time?: string;
   message?: string;
   privacy?: boolean | string;
+  website?: string;
+  formStartedAt?: string;
 };
 
 const ALLOWED_TIMES = ["17:30", "19:30"];
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 Minuten
+const RATE_LIMIT_MAX_REQUESTS = 5; // max. 5 Requests pro IP im Zeitfenster
+const MIN_FORM_FILL_MS = 3000; // Formular muss mindestens 3 Sekunden offen gewesen sein
+
+type RateLimitEntry = {
+  count: number;
+  resetAt: number;
+};
+
+const globalForRateLimit = globalThis as typeof globalThis & {
+  reservationRateLimit?: Map<string, RateLimitEntry>;
+};
+
+const rateLimitStore =
+  globalForRateLimit.reservationRateLimit ?? new Map<string, RateLimitEntry>();
+
+globalForRateLimit.reservationRateLimit = rateLimitStore;
 
 function escapeHtml(value: string) {
   return value
@@ -44,9 +63,44 @@ function isTodayOrFuture(dateString: string) {
   return !Number.isNaN(inputDate.getTime()) && inputDate >= todayOnly;
 }
 
-export async function POST(request: Request) {
+function getClientIp(request: NextRequest) {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (!forwardedFor) return "unknown";
+  return forwardedFor.split(",")[0]?.trim() || "unknown";
+}
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const existing = rateLimitStore.get(ip);
+
+  if (!existing || now > existing.resetAt) {
+    rateLimitStore.set(ip, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
+    return false;
+  }
+
+  if (existing.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return true;
+  }
+
+  existing.count += 1;
+  rateLimitStore.set(ip, existing);
+  return false;
+}
+
+export async function POST(request: NextRequest) {
   try {
     const body: ReservationData = await request.json();
+    const ip = getClientIp(request);
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { message: "Zu viele Anfragen. Bitte später erneut versuchen." },
+        { status: 429 }
+      );
+    }
 
     const name = body.name?.toString().trim() || "";
     const email = body.email?.toString().trim() || "";
@@ -56,6 +110,32 @@ export async function POST(request: Request) {
     const time = body.time?.toString().trim() || "";
     const message = body.message?.toString().trim() || "";
     const privacy = body.privacy;
+    const website = body.website?.toString().trim() || "";
+    const formStartedAt = Number(body.formStartedAt || "0");
+
+    // Honeypot
+    if (website) {
+      return NextResponse.json(
+        { message: "Anfrage konnte nicht verarbeitet werden." },
+        { status: 400 }
+      );
+    }
+
+    // Zeitfalle
+    if (!formStartedAt || Number.isNaN(formStartedAt)) {
+      return NextResponse.json(
+        { message: "Ungültige Anfrage." },
+        { status: 400 }
+      );
+    }
+
+    const fillDuration = Date.now() - formStartedAt;
+    if (fillDuration < MIN_FORM_FILL_MS) {
+      return NextResponse.json(
+        { message: "Anfrage wurde zu schnell gesendet." },
+        { status: 400 }
+      );
+    }
 
     if (!name || !email || !guests || !date || !time) {
       return NextResponse.json(
@@ -174,6 +254,7 @@ export async function POST(request: Request) {
       guestsNumber,
       date,
       time,
+      ip,
     });
 
     const { error } = await resend.emails.send({
