@@ -165,7 +165,7 @@ export async function POST(request: Request) {
     const safeMessage = escapeHtml(message);
 
     const { error } = await resend.emails.send({
-      from: "Moritz <alexilanz@gmail.com>",
+      from: "Moritz Reservierung <onboarding@resend.dev>",
       to: reservationToEmail,
       replyTo: email,
       subject: `Neue Reservierungsanfrage von ${safeName}`,
