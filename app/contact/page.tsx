@@ -11,7 +11,7 @@ import {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#F3EEE7] px-6 py-16 text-[#1A1A1A]">
+    <main className="min-h-screen bg-[#F3EEE7] py-16 text-[#1A1A1A]">
       <div className="mx-auto max-w-6xl px-6">
         {/* Header */}
         <div className="mb-14 max-w-3xl">
