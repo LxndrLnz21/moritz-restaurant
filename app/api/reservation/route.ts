@@ -142,15 +142,17 @@ export async function POST(request: Request) {
     const reservationToEmail = process.env.RESERVATION_TO_EMAIL;
 
     if (!resendApiKey) {
+      console.error("RESEND_API_KEY ist nicht gesetzt.");
       return NextResponse.json(
-        { message: "RESEND_API_KEY ist nicht gesetzt." },
+        { message: "Fehler beim Verarbeiten der Anfrage." },
         { status: 500 }
       );
     }
 
     if (!reservationToEmail) {
+      console.error("RESERVATION_TO_EMAIL ist nicht gesetzt.");
       return NextResponse.json(
-        { message: "RESERVATION_TO_EMAIL ist nicht gesetzt." },
+        { message: "Fehler beim Verarbeiten der Anfrage." },
         { status: 500 }
       );
     }
@@ -163,6 +165,16 @@ export async function POST(request: Request) {
     const safeDate = escapeHtml(date);
     const safeTime = escapeHtml(time);
     const safeMessage = escapeHtml(message);
+
+    console.log("Reservation mail config:", {
+      hasResendApiKey: Boolean(resendApiKey),
+      reservationToEmail,
+      from: "Moritz Reservierung <onboarding@resend.dev>",
+      replyTo: email,
+      guestsNumber,
+      date,
+      time,
+    });
 
     const { error } = await resend.emails.send({
       from: "Moritz Reservierung <onboarding@resend.dev>",
@@ -193,7 +205,7 @@ Datenschutzhinweis bestätigt: Ja`,
     });
 
     if (error) {
-      console.error("Resend-Fehler:", error);
+      console.error("Resend-Fehler:", JSON.stringify(error, null, 2));
 
       return NextResponse.json(
         { message: "E-Mail konnte nicht versendet werden." },
