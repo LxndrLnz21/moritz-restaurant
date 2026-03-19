@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 type ReservationData = {
   name?: string;
   email?: string;
@@ -140,19 +138,24 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!process.env.RESEND_API_KEY) {
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const reservationToEmail = process.env.RESERVATION_TO_EMAIL;
+
+    if (!resendApiKey) {
       return NextResponse.json(
         { message: "RESEND_API_KEY ist nicht gesetzt." },
         { status: 500 }
       );
     }
 
-    if (!process.env.RESERVATION_TO_EMAIL) {
+    if (!reservationToEmail) {
       return NextResponse.json(
         { message: "RESERVATION_TO_EMAIL ist nicht gesetzt." },
         { status: 500 }
       );
     }
+
+    const resend = new Resend(resendApiKey);
 
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
@@ -163,7 +166,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from: "Moritz Reservierung <onboarding@resend.dev>",
-      to: process.env.RESERVATION_TO_EMAIL,
+      to: reservationToEmail,
       replyTo: email,
       subject: `Neue Reservierungsanfrage von ${safeName}`,
       html: `
