@@ -32,7 +32,7 @@ export default function Footer() {
               className="flex items-center gap-2 transition hover:opacity-70"
             >
               <Phone className="h-4 w-4" />
-              <span>+49 (0)151 29722874</span>
+              <span>+49(0)151 29722874</span>
             </a>
 
             <a
