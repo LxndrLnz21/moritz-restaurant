@@ -1,6 +1,6 @@
 export default function ImpressumPage() {
   return (
-    <main className="min-h-screen px-6 py-16">
+    <main className="min-h-screen py-16">
       <div className="mx-auto max-w-6xl px-6">
         <p className="mb-3 font-[var(--font-montserrat)] text-xs uppercase tracking-[0.3em] text-[#7E8F7B]">
           Rechtliches
@@ -29,7 +29,7 @@ export default function ImpressumPage() {
               Kontakt
             </h2>
             <p>
-              Telefon: 015129722874
+              Telefon: +49(0)15129722874
               <br />
               E-Mail: restaurant.moritz@icloud.com
             </p>

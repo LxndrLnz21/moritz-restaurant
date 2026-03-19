@@ -1,6 +1,6 @@
 export default function DatenschutzPage() {
   return (
-    <main className="min-h-screen bg-[#F3EEE7] px-6 py-16 text-[#1A1A1A]">
+    <main className="min-h-screen bg-[#F3EEE7] py-16 text-[#1A1A1A]">
       <div className="mx-auto max-w-6xl px-6">
         <p className="mb-3 font-[var(--font-montserrat)] text-xs uppercase tracking-[0.3em] text-[#7E8F7B]">
           Rechtliches
@@ -25,7 +25,7 @@ export default function DatenschutzPage() {
               <br />
               E-Mail: restaurant.moritz@icloud.com
               <br />
-              Telefon: 015129722874
+              Telefon: +49(0)15129722874
             </p>
           </section>
 

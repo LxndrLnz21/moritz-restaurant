@@ -52,7 +52,7 @@ export default function ReservationPage() {
   }
 
   return (
-    <main className="min-h-screen px-6 py-16">
+    <main className="min-h-screen py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-14 max-w-3xl">
           <p className="mb-3 font-[var(--font-montserrat)] text-xs uppercase tracking-[0.3em] text-[#7E8F7B]">

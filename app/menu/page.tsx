@@ -1,6 +1,6 @@
 export default function MenuPage() {
   return (
-    <main className="min-h-screen px-6 py-16">
+    <main className="min-h-screen py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
