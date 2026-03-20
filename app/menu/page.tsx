@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Speisekarte | Moritz. Restaurant",
+  description:
+    "Entdecken Sie die Speisekarte des Moritz. – saisonale Gerichte, hochwertige Zutaten und kreative Küche.",
+};
+
 export default function MenuPage() {
   return (
     <main className="min-h-screen py-16">

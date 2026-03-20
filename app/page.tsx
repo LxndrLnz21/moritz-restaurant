@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Moritz. Restaurant in Binz – Moderne Küche & besondere Atmosphäre",
+  description:
+    "Erleben Sie moderne Küche im Moritz. Genießen Sie hochwertige Speisen in stilvollem Ambiente. Jetzt Tisch reservieren.",
+};
+
 export default function Home() {
   return (
     <main className="bg-[#F3EEE7] text-[#1A1A1A]">

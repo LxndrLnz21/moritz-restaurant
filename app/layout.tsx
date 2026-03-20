@@ -4,6 +4,10 @@ import Navbar from "@/components/Navbar";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import Footer from "@/components/Footer";
 
+export const metadata = {
+  metadataBase: new URL("https://moritz-restaurant-binz.de"),
+};
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "600", "700"],

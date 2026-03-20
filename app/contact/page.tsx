@@ -9,6 +9,12 @@ import {
   Instagram,
 } from "lucide-react";
 
+export const metadata = {
+  title: "Kontakt | Moritz. Restaurant",
+  description:
+    "Kontaktieren Sie das Moritz. Restaurant. Adresse, Telefonnummer und alle wichtigen Informationen auf einen Blick.",
+};
+
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[#F3EEE7] py-16 text-[#1A1A1A]">

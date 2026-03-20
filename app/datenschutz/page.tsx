@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Datenschutz | Moritz. Restaurant",
+  description:
+    "Informationen zum Datenschutz im Moritz. Restaurant gemäß DSGVO.",
+};
+
 export default function DatenschutzPage() {
   return (
     <main className="min-h-screen bg-[#F3EEE7] py-16 text-[#1A1A1A]">

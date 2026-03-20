@@ -3,6 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Reservierung | Moritz. Restaurant",
+  description:
+    "Reservieren Sie Ihren Tisch im Moritz. bequem online. Wir freuen uns auf Ihren Besuch.",
+};
+
 export default function ReservationPage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [formStartedAt, setFormStartedAt] = useState("");

@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Impressum | Moritz. Restaurant",
+  description:
+    "Impressum des Moritz. Restaurants – alle rechtlichen Angaben und Kontaktdaten.",
+};
+
 export default function ImpressumPage() {
   return (
     <main className="min-h-screen py-16">

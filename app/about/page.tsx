@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Über uns | Moritz. Restaurant",
+  description:
+    "Lernen Sie das Konzept hinter Moritz. kennen – moderne Küche, Qualität und Leidenschaft für besondere Genussmomente.",
+};
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen py-16">
