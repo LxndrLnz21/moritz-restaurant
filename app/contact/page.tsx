@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   MapPin,
@@ -9,17 +11,26 @@ import {
   Instagram,
 } from "lucide-react";
 
-export const metadata = {
-  title: "Kontakt | Moritz. Restaurant",
-  description:
-    "Kontaktieren Sie das Moritz. Restaurant. Adresse, Telefonnummer und alle wichtigen Informationen auf einen Blick.",
-};
-
 export default function ContactPage() {
+  const handleOpenMaps = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    const address = "Margaretenstraße 18, 18609 Binz";
+    const encoded = encodeURIComponent(address);
+
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      window.open(`https://maps.apple.com/?q=${encoded}`, "_blank");
+    } else {
+      window.open(
+        `https://www.google.com/maps/search/?api=1&query=${encoded}`,
+        "_blank"
+      );
+    }
+  };
+
   return (
     <main className="min-h-screen bg-[#F3EEE7] py-16 text-[#1A1A1A]">
       <div className="mx-auto max-w-6xl px-6">
-        {/* Header */}
         <div className="mb-14 max-w-3xl">
           <p className="mb-3 font-[var(--font-montserrat)] text-xs uppercase tracking-[0.3em] text-[#7E8F7B]">
             Kontakt
@@ -36,16 +47,13 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Content */}
         <div className="grid gap-10 md:grid-cols-2">
-          {/* LEFT */}
           <section className="rounded-3xl border border-black/10 bg-white/60 p-8">
             <h2 className="mb-8 font-[var(--font-playfair)] text-2xl">
               Informationen
             </h2>
 
             <div className="space-y-8 font-[var(--font-montserrat)] text-[#4D4D4D]">
-              {/* Adresse */}
               <div className="flex items-start gap-4">
                 <MapPin className="mt-1 h-5 w-5 text-[#7E8F7B]" />
                 <div>
@@ -58,9 +66,8 @@ export default function ContactPage() {
                     18609 Binz
                   </p>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Margaretenstra%C3%9Fe+18+18609+Binz"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
+                    onClick={handleOpenMaps}
                     className="mt-2 inline-block text-sm underline underline-offset-4 transition hover:opacity-70"
                   >
                     In Karten öffnen
@@ -68,7 +75,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Telefon */}
               <div className="flex items-start gap-4">
                 <Phone className="mt-1 h-5 w-5 text-[#7E8F7B]" />
                 <div>
@@ -84,7 +90,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Mail */}
               <div className="flex items-start gap-4">
                 <Mail className="mt-1 h-5 w-5 text-[#7E8F7B]" />
                 <div>
@@ -100,22 +105,18 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Öffnungszeiten */}
               <div className="flex items-start gap-4">
                 <Clock className="mt-1 h-5 w-5 text-[#7E8F7B]" />
                 <div>
                   <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#7E8F7B]">
                     Öffnungszeiten
                   </p>
-                  <p className="text-base">
-                    Täglich ab 17:00 Uhr geöffnet
-                  </p>
+                  <p className="text-base">Täglich ab 17:00 Uhr geöffnet</p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* RIGHT */}
           <section className="flex flex-col justify-between rounded-3xl border border-black/10 bg-[#B7BDAF] p-8">
             <div>
               <h2 className="mb-8 font-[var(--font-playfair)] text-2xl">
@@ -151,7 +152,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Buttons */}
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/reservation"
