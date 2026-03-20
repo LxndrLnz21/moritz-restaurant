@@ -20,9 +20,8 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-export const metadata: Metadata = {
-  title: "Moritz.",
-  description: "Essen bei Freunden",
+export const metadata = {
+  metadataBase: new URL("https://moritz-restaurant-binz.de"),
 };
 
 export default function RootLayout({
