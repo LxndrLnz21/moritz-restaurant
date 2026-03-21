@@ -14,10 +14,13 @@ import {
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
+const ADDRESS = "Margaretenstraße 18, 18609 Binz";
+
 export default function ContactPageClient() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [formStartedAt, setFormStartedAt] = useState("");
   const successRef = useRef<HTMLDivElement | null>(null);
+  const errorRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setFormStartedAt(String(Date.now()));
@@ -30,26 +33,33 @@ export default function ContactPageClient() {
         block: "center",
       });
     }
+
+    if (status === "error") {
+      errorRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   }, [status]);
 
   const handleOpenMaps = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    const address = "Margaretenstraße 18, 18609 Binz";
-    const encoded = encodeURIComponent(address);
+    const encoded = encodeURIComponent(ADDRESS);
+    const targetUrl = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+      ? `https://maps.apple.com/?q=${encoded}`
+      : `https://www.google.com/maps/search/?api=1&query=${encoded}`;
 
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      window.open(`https://maps.apple.com/?q=${encoded}`, "_blank");
-    } else {
-      window.open(
-        `https://www.google.com/maps/search/?api=1&query=${encoded}`,
-        "_blank"
-      );
-    }
+    window.open(targetUrl, "_blank", "noopener,noreferrer");
   };
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (status === "loading") {
+      return;
+    }
+
     setStatus("loading");
 
     const form = event.currentTarget;
@@ -74,7 +84,13 @@ export default function ContactPageClient() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      let result: { message?: string } | null = null;
+
+      try {
+        result = await response.json();
+      } catch {
+        result = null;
+      }
 
       if (!response.ok) {
         console.error("API-Fehler:", result);
@@ -91,6 +107,9 @@ export default function ContactPageClient() {
     }
   }
 
+  const encodedAddress = encodeURIComponent(ADDRESS);
+  const mapsFallbackUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+
   return (
     <main className="min-h-screen bg-[#F3EEE7] py-16 text-[#1A1A1A]">
       <div className="mx-auto max-w-6xl px-6">
@@ -100,13 +119,13 @@ export default function ContactPageClient() {
           </p>
 
           <h1 className="mb-6 font-[var(--font-playfair)] text-4xl md:text-5xl">
-            Wir freuen uns auf eure Nachricht.
+            Wir freuen uns auf Ihre Nachricht.
           </h1>
 
           <p className="font-[var(--font-montserrat)] text-base leading-8 text-[#4D4D4D] md:text-lg">
-            Hier findet ihr alle wichtigen Informationen rund um euren Besuch im
+            Hier finden Sie alle wichtigen Informationen rund um Ihren Besuch im
             Moritz. Für besondere Wünsche, Gruppenanfragen oder individuelle
-            Anliegen nutzt bitte das Anfrageformular.
+            Anliegen nutzen Sie bitte das Anfrageformular.
           </p>
         </div>
 
@@ -120,7 +139,7 @@ export default function ContactPageClient() {
                 Dieses Formular ist für besondere Wünsche, individuelle Anfragen
                 sowie Gruppenanfragen gedacht.
                 <br />
-                Für normale Tischreservierungen nutzt bitte unsere{" "}
+                Für normale Tischreservierungen nutzen Sie bitte unsere{" "}
                 <Link
                   href="/reservation"
                   className="underline underline-offset-4 transition hover:opacity-70"
@@ -134,6 +153,7 @@ export default function ContactPageClient() {
             {status === "success" ? (
               <div
                 ref={successRef}
+                aria-live="polite"
                 className="animate-in fade-in slide-in-from-bottom-2 rounded-3xl border border-green-200 bg-green-50 p-8 text-center duration-300"
               >
                 <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-green-100">
@@ -156,11 +176,11 @@ export default function ContactPageClient() {
                 </h3>
 
                 <p className="mx-auto max-w-2xl font-[var(--font-montserrat)] text-base leading-8 text-[#4D4D4D]">
-                  Vielen Dank für eure Nachricht.
+                  Vielen Dank für Ihre Nachricht.
                   <br />
                   <br />
                   Wir melden uns schnellstmöglich per E-Mail oder telefonisch
-                  zurück.
+                  bei Ihnen zurück.
                 </p>
 
                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
@@ -200,26 +220,38 @@ export default function ContactPageClient() {
 
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]">
+                    <label
+                      htmlFor="name"
+                      className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]"
+                    >
                       Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="name"
                       name="name"
                       type="text"
                       required
+                      maxLength={100}
+                      autoComplete="name"
                       placeholder="Ihr Name"
                       className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 font-[var(--font-montserrat)] text-[#1A1A1A] outline-none transition focus:border-[#8E9A87] focus:ring-2 focus:ring-[#8E9A87]/20"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]">
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]"
+                    >
                       E-Mail <span className="text-red-500">*</span>
                     </label>
                     <input
+                      id="email"
                       name="email"
                       type="email"
                       required
+                      maxLength={200}
+                      autoComplete="email"
                       placeholder="ihre@email.de"
                       className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 font-[var(--font-montserrat)] text-[#1A1A1A] outline-none transition focus:border-[#8E9A87] focus:ring-2 focus:ring-[#8E9A87]/20"
                     />
@@ -227,13 +259,19 @@ export default function ContactPageClient() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]">
+                  <label
+                    htmlFor="phone"
+                    className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]"
+                  >
                     Telefon <span className="text-[#7E8F7B]">(optional)</span>
                   </label>
                   <input
+                    id="phone"
                     name="phone"
                     type="tel"
                     inputMode="tel"
+                    autoComplete="tel"
+                    maxLength={20}
                     pattern="^\+?[0-9\s\-()/]{6,20}$"
                     title="Bitte eine gültige Telefonnummer eingeben, z. B. +49 151 29722874"
                     placeholder="+49 151 29722874"
@@ -242,14 +280,20 @@ export default function ContactPageClient() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]">
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block font-[var(--font-montserrat)] text-sm font-medium text-[#1A1A1A]"
+                  >
                     Nachricht <span className="text-red-500">*</span>
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     rows={6}
                     required
-                    placeholder="Bitte beschreibt euer Anliegen, besondere Wünsche oder eine Gruppenanfrage."
+                    minLength={10}
+                    maxLength={2000}
+                    placeholder="Bitte beschreiben Sie Ihr Anliegen, besondere Wünsche oder eine Gruppenanfrage."
                     className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 font-[var(--font-montserrat)] text-[#1A1A1A] outline-none transition focus:border-[#8E9A87] focus:ring-2 focus:ring-[#8E9A87]/20"
                   />
                 </div>
@@ -295,10 +339,14 @@ export default function ContactPageClient() {
                   </button>
 
                   {status === "error" && (
-                    <div className="animate-in fade-in slide-in-from-top-1 rounded-2xl border border-red-200 bg-red-50 p-4 duration-300">
+                    <div
+                      ref={errorRef}
+                      aria-live="assertive"
+                      className="animate-in fade-in slide-in-from-top-1 rounded-2xl border border-red-200 bg-red-50 p-4 duration-300"
+                    >
                       <p className="font-[var(--font-montserrat)] text-sm leading-6 text-red-700">
                         Die Nachricht konnte nicht gesendet werden. Bitte
-                        versucht es erneut oder kontaktiert uns direkt
+                        versuchen Sie es erneut oder kontaktieren Sie uns direkt
                         telefonisch.
                       </p>
                     </div>
@@ -316,7 +364,7 @@ export default function ContactPageClient() {
 
               <div className="space-y-8 font-[var(--font-montserrat)] text-[#4D4D4D]">
                 <div className="flex items-start gap-4">
-                  <MapPin className="mt-1 h-5 w-5 text-[#7E8F7B]" />
+                  <MapPin className="mt-1 h-5 w-5 text-[#7E8F7B]" aria-hidden="true" />
                   <div>
                     <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#7E8F7B]">
                       Adresse
@@ -327,8 +375,11 @@ export default function ContactPageClient() {
                       18609 Binz
                     </p>
                     <a
-                      href="#"
+                      href={mapsFallbackUrl}
                       onClick={handleOpenMaps}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Adresse in Karten öffnen"
                       className="mt-2 inline-block text-sm underline underline-offset-4 transition hover:opacity-70"
                     >
                       In Karten öffnen
@@ -337,13 +388,14 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Phone className="mt-1 h-5 w-5 text-[#7E8F7B]" />
+                  <Phone className="mt-1 h-5 w-5 text-[#7E8F7B]" aria-hidden="true" />
                   <div>
                     <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#7E8F7B]">
                       Telefon
                     </p>
                     <a
                       href="tel:+4915129722874"
+                      aria-label="Moritz. Restaurant telefonisch kontaktieren"
                       className="text-base transition hover:opacity-70"
                     >
                       +49 (0)151 29722874
@@ -352,13 +404,14 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Mail className="mt-1 h-5 w-5 text-[#7E8F7B]" />
+                  <Mail className="mt-1 h-5 w-5 text-[#7E8F7B]" aria-hidden="true" />
                   <div>
                     <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#7E8F7B]">
                       E-Mail
                     </p>
                     <a
                       href="mailto:restaurant.moritz@icloud.com"
+                      aria-label="E-Mail an Moritz. Restaurant senden"
                       className="text-base transition hover:opacity-70"
                     >
                       restaurant.moritz@icloud.com
@@ -367,7 +420,7 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Clock className="mt-1 h-5 w-5 text-[#7E8F7B]" />
+                  <Clock className="mt-1 h-5 w-5 text-[#7E8F7B]" aria-hidden="true" />
                   <div>
                     <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#7E8F7B]">
                       Öffnungszeiten
@@ -385,7 +438,7 @@ export default function ContactPageClient() {
 
               <div className="space-y-8 font-[var(--font-montserrat)] text-[#3F463D]">
                 <div className="flex items-start gap-4">
-                  <UtensilsCrossed className="mt-1 h-5 w-5" />
+                  <UtensilsCrossed className="mt-1 h-5 w-5" aria-hidden="true" />
                   <div>
                     <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#5E665B]">
                       Reservierung
@@ -398,7 +451,7 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Info className="mt-1 h-5 w-5" />
+                  <Info className="mt-1 h-5 w-5" aria-hidden="true" />
                   <div>
                     <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#5E665B]">
                       Hinweis
@@ -423,9 +476,10 @@ export default function ContactPageClient() {
                   href="https://www.instagram.com/moritz.essenbeifreunden/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Instagram-Profil von Moritz. in neuem Tab öffnen"
                   className="flex items-center justify-center gap-2 rounded-full border border-black/15 px-6 py-3 font-[var(--font-montserrat)] text-sm font-medium transition hover:bg-black/5"
                 >
-                  <Instagram className="h-4 w-4" />
+                  <Instagram className="h-4 w-4" aria-hidden="true" />
                   <span>moritz.essenbeifreunden</span>
                 </a>
               </div>

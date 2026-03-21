@@ -1,7 +1,9 @@
-export const metadata = {
-  title: "Impressum | Moritz. Restaurant",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Impressum",
   description:
-    "Impressum des Moritz. Restaurants – alle rechtlichen Angaben und Kontaktdaten.",
+    "Impressum des Moritz. Restaurants – rechtliche Angaben und Kontaktdaten.",
 };
 
 export default function ImpressumPage() {
@@ -35,9 +37,21 @@ export default function ImpressumPage() {
               Kontakt
             </h2>
             <p>
-              Telefon: +49(0)15129722874
+              Telefon:{" "}
+              <a
+                href="tel:+4915129722874"
+                className="underline underline-offset-4 transition hover:opacity-70"
+              >
+                +49 (0)151 29722874
+              </a>
               <br />
-              E-Mail: restaurant.moritz@icloud.com
+              E-Mail:{" "}
+              <a
+                href="mailto:restaurant.moritz@icloud.com"
+                className="break-all underline underline-offset-4 transition hover:opacity-70"
+              >
+                restaurant.moritz@icloud.com
+              </a>
             </p>
           </section>
 
@@ -46,13 +60,14 @@ export default function ImpressumPage() {
               Umsatzsteuer-ID
             </h2>
             <p>
-              Eine Umsatzsteuer-Identifikationsnummer liegt derzeit noch nicht vor.
+              Sofern eine Umsatzsteuer-Identifikationsnummer vorliegt, wird sie
+              hier ergänzt.
             </p>
           </section>
 
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
-              Verantwortlich für den Inhalt
+              Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
             </h2>
             <p>
               Tobias Moritz
@@ -68,9 +83,9 @@ export default function ImpressumPage() {
               Haftung für Inhalte
             </h2>
             <p>
-              Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für
-              die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird
-              jedoch keine Gewähr übernommen.
+              Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt.
+              Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte
+              wird jedoch keine Gewähr übernommen.
             </p>
           </section>
 
@@ -79,10 +94,11 @@ export default function ImpressumPage() {
               Haftung für Links
             </h2>
             <p>
-              Diese Website enthält Links zu externen Websites Dritter, auf deren
-              Inhalte kein Einfluss besteht. Deshalb kann für diese fremden Inhalte
-              auch keine Gewähr übernommen werden. Für die Inhalte der verlinkten
-              Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
+              Diese Website enthält Links zu externen Websites Dritter, auf
+              deren Inhalte wir keinen Einfluss haben. Deshalb können wir für
+              diese fremden Inhalte auch keine Gewähr übernehmen. Für die
+              Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
+              oder Betreiber der Seiten verantwortlich.
             </p>
           </section>
 
@@ -91,10 +107,11 @@ export default function ImpressumPage() {
               Urheberrecht
             </h2>
             <p>
-              Die auf dieser Website erstellten Inhalte und Werke unterliegen dem
-              deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung
-              und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts
-              bedürfen der schriftlichen Zustimmung des jeweiligen Urhebers.
+              Die auf dieser Website erstellten Inhalte und Werke unterliegen
+              dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung,
+              Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+              Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen
+              Urhebers.
             </p>
           </section>
         </div>

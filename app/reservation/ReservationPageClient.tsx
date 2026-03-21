@@ -19,7 +19,8 @@ export default function ReservationPageClient() {
           <p className="font-[var(--font-montserrat)] text-base leading-8 text-[#4D4D4D] md:text-lg">
             Online-Reservierungen laufen über unser Buchungssystem.
             <br />
-            Für besondere Wünsche oder individuelle Anfragen nutzt bitte das Kontaktformular.
+            Für besondere Wünsche oder individuelle Anfragen nutzen Sie bitte das
+            Kontaktformular.
           </p>
         </div>
 
@@ -50,11 +51,12 @@ export default function ReservationPageClient() {
                 </h2>
 
                 <p className="mx-auto mb-8 max-w-2xl font-[var(--font-montserrat)] text-base leading-8 text-[#4D4D4D]">
-                  Reserviert euren Tisch bequem online über unser externes Buchungssystem.
+                  Reservieren Sie Ihren Tisch bequem online über unser externes
+                  Buchungssystem.
                   <br />
                   <br />
-                  Für Gruppenanfragen, besondere Wünsche oder individuelle Anliegen nutzt bitte
-                  unser Kontaktformular.
+                  Für Gruppenanfragen, besondere Wünsche oder individuelle
+                  Anliegen nutzen Sie bitte unser Kontaktformular.
                 </p>
 
                 <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -62,6 +64,7 @@ export default function ReservationPageClient() {
                     href={LIGHTSPEED_RESERVATION_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Externe Online-Reservierung in neuem Tab öffnen"
                     className="inline-flex items-center justify-center rounded-full bg-[#8E9A87] px-6 py-3 text-center font-[var(--font-montserrat)] text-sm font-medium text-white transition hover:opacity-90"
                   >
                     Zur Online-Reservierung
@@ -76,8 +79,8 @@ export default function ReservationPageClient() {
                 </div>
 
                 <p className="mt-6 font-[var(--font-montserrat)] text-sm leading-6 text-[#5E665B]">
-                  Mit Klick auf „Zur Online-Reservierung“ verlasst ihr unsere Website und werdet
-                  zum externen Buchungssystem weitergeleitet.
+                  Mit Klick auf „Zur Online-Reservierung“ verlassen Sie unsere
+                  Website und werden zum externen Buchungssystem weitergeleitet.
                 </p>
               </div>
             </div>
@@ -101,8 +104,8 @@ export default function ReservationPageClient() {
                   Online-Reservierung
                 </p>
                 <p className="text-base leading-7">
-                  Tischreservierungen werden direkt über unser externes Buchungssystem
-                  entgegengenommen.
+                  Tischreservierungen werden direkt über unser externes
+                  Buchungssystem entgegengenommen.
                 </p>
               </div>
 
@@ -111,8 +114,8 @@ export default function ReservationPageClient() {
                   Besondere Anfragen
                 </p>
                 <p className="text-base leading-7">
-                  Für Gruppen, individuelle Wünsche oder Sonderfälle nutzt bitte das
-                  Kontaktformular.
+                  Für Gruppen, individuelle Wünsche oder Sonderfälle nutzen Sie
+                  bitte das Kontaktformular.
                 </p>
               </div>
 
@@ -123,12 +126,14 @@ export default function ReservationPageClient() {
                 <div className="space-y-1 text-base leading-7">
                   <a
                     href="tel:+4915129722874"
+                    aria-label="Moritz. Restaurant telefonisch kontaktieren"
                     className="block transition hover:opacity-70"
                   >
                     +49 (0) 151 29722874
                   </a>
                   <a
                     href="mailto:restaurant.moritz@icloud.com"
+                    aria-label="E-Mail an Moritz. Restaurant senden"
                     className="block transition hover:opacity-70"
                   >
                     restaurant.moritz@icloud.com

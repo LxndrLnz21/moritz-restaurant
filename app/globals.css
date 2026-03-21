@@ -1,32 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  /* Farben Moritz */
   --color-sand: #F3EEE7;
   --color-sage: #7E8F7B;
   --color-dark: #1A1A1A;
   --color-text: #4D4D4D;
 }
 
-/* Basis */
+/* Basis Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body Defaults */
 body {
   margin: 0;
   padding: 0;
   background-color: var(--color-sand);
   color: var(--color-dark);
   font-family: var(--font-montserrat), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Typografie System */
-h1, h2, h3, h4 {
+/* Headings */
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-playfair), serif;
+  line-height: 1.2;
 }
 
-/* kleine Verbesserungen */
+/* Text */
 p {
   line-height: 1.7;
 }
 
+/* Links – wichtig für UX + Accessibility */
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+/* Fokus-Zustände (Accessibility + Tastatur-Navigation) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+}
+
+/* Buttons sauber */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Inputs */
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* Bilder sauber skalieren */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Verhindert Layout-Jumps bei Scrollbars */
+html {
+  overflow-y: scroll;
 }

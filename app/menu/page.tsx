@@ -1,7 +1,9 @@
-export const metadata = {
-  title: "Speisekarte | Moritz. Restaurant",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Speisekarte",
   description:
-    "Entdecken Sie die Speisekarte des Moritz. – saisonale Gerichte, hochwertige Zutaten und kreative Küche.",
+    "Entdecken Sie die Speisekarte des Moritz. Restaurants in Binz – saisonale Gerichte, hochwertige Zutaten und moderne deutsch-europäische Küche.",
 };
 
 export default function MenuPage() {
@@ -13,12 +15,14 @@ export default function MenuPage() {
             <p className="mb-3 font-[var(--font-montserrat)] text-xs uppercase tracking-[0.3em] text-[#7E8F7B]">
               Moritz.
             </p>
+
             <h1 className="font-[var(--font-playfair)] text-4xl md:text-5xl">
               Speisekarte
             </h1>
+
             <p className="mt-4 max-w-2xl font-[var(--font-montserrat)] text-base leading-7 text-[#4D4D4D]">
               Moderne deutsch-europäische Küche in entspannter Atmosphäre.
-              Unsere Speisekarte kann saisonal angepasst werden.
+              Unsere Speisekarte wird saisonal angepasst.
             </p>
           </div>
 
@@ -26,10 +30,19 @@ export default function MenuPage() {
             href="/pdf/speisekarte.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Speisekarte als PDF in neuem Tab öffnen"
             className="inline-flex w-fit items-center rounded-full border border-black/15 px-6 py-3 font-[var(--font-montserrat)] text-sm font-medium transition hover:bg-black/5"
           >
             Speisekarte als PDF
           </a>
+        </div>
+
+        <div className="mb-10 rounded-2xl border border-black/10 bg-[#F8F5EF] p-4">
+          <p className="font-[var(--font-montserrat)] text-sm leading-6 text-[#4D4D4D]">
+            Alle Speisen werden frisch zubereitet. Saisonale Änderungen,
+            kurzfristige Anpassungen sowie Irrtümer bei Zutaten und Preisen
+            behalten wir uns vor.
+          </p>
         </div>
 
         <div className="space-y-16">
@@ -51,7 +64,7 @@ export default function MenuPage() {
             />
             <MenuItem
               name="Burrata"
-              description="Geröstete Nüsse, Rucola"
+              description="Geröstete Nüsse und Rucola"
               price="8,00 €"
             />
           </MenuSection>
@@ -124,7 +137,7 @@ export default function MenuPage() {
               price="24,50 €"
             />
             <MenuItem
-              name="Saltim Bocca von der Perlhuhnbrust"
+              name="Saltimbocca von der Perlhuhnbrust"
               description="Geschmolzene Tomaten, Pappardelle und Hartkäse"
               price="22,50 €"
             />
@@ -142,7 +155,7 @@ export default function MenuPage() {
 
             <MenuItem
               name="Hähnchengeschnetzeltes"
-              description="Nudeln"
+              description="Mit Nudeln"
               price="10,00 €"
             />
             <MenuItem
@@ -152,7 +165,7 @@ export default function MenuPage() {
             />
             <MenuItem
               name="Bolognese"
-              description="Nudeln"
+              description="Mit Nudeln"
               price="9,50 €"
             />
             <MenuItem
@@ -170,7 +183,7 @@ export default function MenuPage() {
             />
             <MenuItem
               name="Crème Brûlée"
-              description="Und frische Beeren"
+              description="Mit frischen Beeren"
               price="7,50 €"
             />
           </MenuSection>
@@ -188,8 +201,11 @@ function MenuSection({
   children: React.ReactNode;
 }) {
   return (
-    <section>
-      <h2 className="mb-8 font-[var(--font-playfair)] text-2xl md:text-3xl">
+    <section aria-labelledby={`section-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+      <h2
+        id={`section-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+        className="mb-8 font-[var(--font-playfair)] text-2xl md:text-3xl"
+      >
         {title}
       </h2>
       <div className="space-y-5">{children}</div>
@@ -207,17 +223,17 @@ function MenuItem({
   price: string;
 }) {
   return (
-    <div className="border-b border-black/10 pb-3 max-w-3xl">
+    <div className="max-w-3xl border-b border-black/10 pb-3">
       <div className="grid grid-cols-[1fr_auto] items-baseline gap-x-6">
         <h3 className="font-[var(--font-montserrat)] text-base font-medium text-[#1A1A1A] md:text-lg">
           {name}
         </h3>
 
-        <span className="font-[var(--font-montserrat)] text-sm whitespace-nowrap text-[#1A1A1A] md:text-base">
+        <span className="whitespace-nowrap font-[var(--font-montserrat)] text-sm text-[#1A1A1A] md:text-base">
           {price}
         </span>
 
-        <p className="mt-1 font-[var(--font-montserrat)] text-sm leading-6 text-[#5A5A5A] md:text-base col-span-2">
+        <p className="col-span-2 mt-1 font-[var(--font-montserrat)] text-sm leading-6 text-[#5A5A5A] md:text-base">
           {description}
         </p>
       </div>

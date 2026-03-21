@@ -7,6 +7,6 @@ export const metadata: Metadata = {
     "Kontaktieren Sie das Moritz. Restaurant für besondere Wünsche, Gruppenanfragen und individuelle Anliegen. Adresse, Telefonnummer und alle wichtigen Informationen auf einen Blick.",
 };
 
-export default function Page() {
+export default function ContactPage() {
   return <ContactPageClient />;
 }
