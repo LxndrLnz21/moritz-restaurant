@@ -17,6 +17,7 @@
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll; /* verhindert Layout-Sprünge */
 }
 
 /* Body Defaults */
@@ -28,6 +29,11 @@ body {
   font-family: var(--font-montserrat), sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* 🔥 WICHTIG: Playfair Utility-Klasse (Fix für Navbar Mobile) */
+.font-playfair {
+  font-family: var(--font-playfair), serif;
 }
 
 /* Headings */
@@ -44,13 +50,13 @@ p {
   line-height: 1.7;
 }
 
-/* Links – wichtig für UX + Accessibility */
+/* Links */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Fokus-Zustände (Accessibility + Tastatur-Navigation) */
+/* Fokus-Zustände (Accessibility) */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -59,7 +65,7 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* Buttons sauber */
+/* Buttons */
 button {
   cursor: pointer;
   font-family: inherit;
@@ -71,14 +77,9 @@ textarea {
   font-family: inherit;
 }
 
-/* Bilder sauber skalieren */
+/* Bilder */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-}
-
-/* Verhindert Layout-Jumps bei Scrollbars */
-html {
-  overflow-y: scroll;
 }
