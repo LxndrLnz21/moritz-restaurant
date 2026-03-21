@@ -16,7 +16,7 @@ export default function ReservationPageClient() {
   if (status === "success") {
     successRef.current?.scrollIntoView({
       behavior: "smooth",
-      block: "start",
+      block: "center",
     });
   }
 }, [status]);
