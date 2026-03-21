@@ -21,7 +21,9 @@ export default function ReservationPageClient() {
   }
 }, [status]);
 
+  const openingDate = "2026-04-01";
   const today = new Date().toISOString().split("T")[0];
+  const minReservationDate = today > openingDate ? today : openingDate;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -225,7 +227,7 @@ export default function ReservationPageClient() {
                     <input
                       name="date"
                       type="date"
-                      min={today}
+                      min={minReservationDate}
                       required
                       className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 font-[var(--font-montserrat)] text-[#1A1A1A] outline-none transition focus:border-[#8E9A87] focus:ring-2 focus:ring-[#8E9A87]/20"
                     />

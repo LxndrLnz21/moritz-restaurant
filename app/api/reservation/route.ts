@@ -69,6 +69,13 @@ function getClientIp(request: NextRequest) {
   return forwardedFor.split(",")[0]?.trim() || "unknown";
 }
 
+function isOnOrAfterOpeningDate(dateString: string) {
+  const openingDate = new Date("2026-04-01");
+  const inputDate = new Date(dateString);
+
+  return !Number.isNaN(inputDate.getTime()) && inputDate >= openingDate;
+}
+
 function isRateLimited(ip: string) {
   const now = Date.now();
   const existing = rateLimitStore.get(ip);
@@ -204,6 +211,13 @@ export async function POST(request: NextRequest) {
     if (!isTodayOrFuture(date)) {
       return NextResponse.json(
         { message: "Das Datum darf nicht in der Vergangenheit liegen." },
+        { status: 400 }
+      );
+    }
+    
+    if (!isOnOrAfterOpeningDate(date)) {
+      return NextResponse.json(
+        { message: "Reservierungen sind erst ab dem 01.04.2026 möglich." },
         { status: 400 }
       );
     }
