@@ -1,15 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 export default function ReservationPageClient() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [formStartedAt, setFormStartedAt] = useState("");
+  const successRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setFormStartedAt(String(Date.now()));
   }, []);
+  
+  useEffect(() => {
+  if (status === "success") {
+    successRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+}, [status]);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -80,7 +90,10 @@ export default function ReservationPageClient() {
         <div className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
           <section className="rounded-3xl border border-black/10 bg-white/60 p-6 shadow-sm md:p-8">
             {status === "success" ? (
-              <div className="animate-in fade-in slide-in-from-bottom-2 rounded-3xl border border-green-200 bg-green-50 p-8 text-center duration-300">
+              <div
+                ref={successRef}
+                className="animate-in fade-in slide-in-from-bottom-2 rounded-3xl border border-green-200 bg-green-50 p-8 text-center duration-300"
+              >
                 <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-green-100">
                   <svg
                     className="h-7 w-7 text-green-700"
