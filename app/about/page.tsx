@@ -11,7 +11,6 @@ export default function AboutPage() {
         <h1 className="mb-6 text-4xl font-serif">Über uns</h1>
         <p className="text-lg text-gray-700">
           Hier folgt später die Geschichte von Moritz. 
-          FALLBACK VERSION E-MAIL ANPASSEN!
         </p>
       </div>
     </main>

@@ -1,4 +1,6 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Datenschutz | Moritz. Restaurant",
   description:
     "Informationen zum Datenschutz im Moritz. Restaurant gemäß DSGVO.",
@@ -17,7 +19,6 @@ export default function DatenschutzPage() {
         </h1>
 
         <div className="max-w-4xl space-y-8 font-[var(--font-montserrat)] text-base leading-8 text-[#4D4D4D]">
-
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
               Verantwortlicher
@@ -31,7 +32,7 @@ export default function DatenschutzPage() {
               <br />
               E-Mail: restaurant.moritz@icloud.com
               <br />
-              Telefon: +49(0)15129722874
+              Telefon: +49 (0)151 29722874
             </p>
           </section>
 
@@ -43,9 +44,39 @@ export default function DatenschutzPage() {
               Wir verarbeiten personenbezogene Daten nur, soweit dies zur
               Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte
               und Leistungen erforderlich ist. Die Verarbeitung personenbezogener
-              Daten erfolgt regelmäßig nur nach Einwilligung der betroffenen Person
-              oder wenn die Verarbeitung durch gesetzliche Vorschriften gestattet
-              ist.
+              Daten erfolgt auf Grundlage der Datenschutz-Grundverordnung
+              (DSGVO), insbesondere auf Basis von Art. 6 Abs. 1 lit. b DSGVO,
+              soweit die Verarbeitung zur Durchführung vorvertraglicher Maßnahmen
+              oder zur Vertragserfüllung erforderlich ist, sowie auf Grundlage
+              von Art. 6 Abs. 1 lit. f DSGVO, soweit ein berechtigtes Interesse
+              an einer sicheren und funktionsfähigen Bereitstellung der Website,
+              der Bearbeitung eingehender Anfragen sowie einer anonymisierten
+              statistischen Auswertung der Nutzung unserer Website besteht.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Hosting
+            </h2>
+            <p>
+              Unsere Website wird über Vercel bereitgestellt. Beim Aufruf der
+              Website können technisch erforderliche Daten verarbeitet werden,
+              insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs,
+              aufgerufene Inhalte, Browserinformationen sowie technische
+              Protokolldaten.
+            </p>
+            <p>
+              Die Verarbeitung erfolgt zum Zweck der technischen Bereitstellung,
+              Stabilität und Sicherheit der Website auf Grundlage von Art. 6 Abs.
+              1 lit. f DSGVO.
+            </p>
+            <p>
+              Soweit personenbezogene Daten im Rahmen des Hostings durch Vercel
+              verarbeitet werden, erfolgt dies auf Basis der vertraglichen
+              Vereinbarungen mit dem jeweiligen Dienstleister. Vercel stellt für
+              bestimmte Vertragskonstellationen auch ein Data Processing
+              Addendum (DPA) bereit.
             </p>
           </section>
 
@@ -55,9 +86,10 @@ export default function DatenschutzPage() {
             </h2>
             <p>
               Beim Aufruf dieser Website werden durch den Hosting-Anbieter
-              automatisch Informationen erfasst. Dazu können insbesondere
-              Browsertyp, Betriebssystem, IP-Adresse, Datum und Uhrzeit des
-              Zugriffs sowie die aufgerufenen Seiten gehören.
+              automatisch Informationen in sogenannten Server-Logfiles erfasst.
+              Dazu können insbesondere Browsertyp, Betriebssystem, IP-Adresse,
+              Datum und Uhrzeit des Zugriffs sowie die aufgerufenen Seiten
+              gehören.
             </p>
             <p>
               Die Verarbeitung erfolgt zur technischen Bereitstellung, Stabilität
@@ -65,23 +97,50 @@ export default function DatenschutzPage() {
               DSGVO.
             </p>
             <p>
-              Die Daten werden nur so lange gespeichert, wie dies für den sicheren
-              Betrieb der Website erforderlich ist.
+              Die Daten werden nur so lange gespeichert, wie dies für den
+              sicheren Betrieb der Website erforderlich ist.
             </p>
           </section>
 
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
-              Kontaktaufnahme
+              Vercel Web Analytics
             </h2>
             <p>
-              Wenn Sie uns per E-Mail, telefonisch oder über ein Formular
+              Wir nutzen Vercel Web Analytics zur datenschutzfreundlichen,
+              statistischen Auswertung der Nutzung unserer Website. Nach den
+              Angaben von Vercel arbeitet dieser Dienst ohne Third-Party-Cookies
+              und verarbeitet nur anonymisierte beziehungsweise aggregierte
+              Nutzungsdaten.
+            </p>
+            <p>
+              Dabei können insbesondere Informationen zu Seitenaufrufen,
+              Referrern, Browsertyp, Betriebssystem, Gerätekategorie und
+              ungefährem Standort verarbeitet werden. Vercel gibt an, dass
+              Endnutzer anhand eines Hashes aus der eingehenden Anfrage erkannt
+              werden und dass diese Zuordnung nicht dauerhaft gespeichert,
+              sondern nach 24 Stunden verworfen wird.
+            </p>
+            <p>
+              Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f
+              DSGVO. Unser berechtigtes Interesse liegt in der anonymisierten
+              Analyse der Reichweite, der Verbesserung unseres Online-Angebots
+              und der technisch-wirtschaftlichen Optimierung unserer Website.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Kontaktaufnahme und Anfrageformular
+            </h2>
+            <p>
+              Wenn Sie uns per E-Mail, telefonisch oder über das Anfrageformular
               kontaktieren, verarbeiten wir die von Ihnen mitgeteilten Daten zur
               Bearbeitung Ihrer Anfrage.
             </p>
             <p>
-              Dies betrifft insbesondere Name, Kontaktdaten, Inhaltsdaten Ihrer
-              Nachricht sowie gegebenenfalls reservierungsbezogene Angaben.
+              Dies betrifft insbesondere Name, E-Mail-Adresse, Telefonnummer
+              (sofern freiwillig angegeben) sowie den Inhalt Ihrer Nachricht.
             </p>
             <p>
               Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b
@@ -99,27 +158,47 @@ export default function DatenschutzPage() {
 
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
-              Reservierungsanfragen
+              E-Mail-Versand über Resend
             </h2>
             <p>
-              Bei Reservierungsanfragen verarbeiten wir die von Ihnen angegebenen
-              Daten, insbesondere Name, Telefonnummer, E-Mail-Adresse, Datum,
-              Uhrzeit, Personenzahl und Nachricht, um Ihre Anfrage zu bearbeiten
-              und eine Tischreservierung vorzubereiten oder durchzuführen.
+              Für die technische Übermittlung von Formularanfragen nutzen wir den
+              Dienst Resend. Wenn Sie unser Anfrageformular absenden, werden die
+              von Ihnen eingegebenen Daten zum Zweck der Zustellung und
+              Bearbeitung der Nachricht an Resend übermittelt.
             </p>
             <p>
-              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO sowie ergänzend Art.
-              6 Abs. 1 lit. f DSGVO für eine effiziente Bearbeitung von
-              Reservierungsanfragen.
+              Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage auf
+              Grundlage von Art. 6 Abs. 1 lit. b DSGVO beziehungsweise Art. 6
+              Abs. 1 lit. f DSGVO. Resend bietet zudem ein Data Processing
+              Addendum (DPA) für die Verarbeitung personenbezogener Daten an.
             </p>
             <p>
-              Die Daten werden über unseren E-Mail-Dienstleister Resend verarbeitet,
-              um die Reservierungsanfrage zu übermitteln.
+              Soweit dabei eine Verarbeitung personenbezogener Daten durch Resend
+              erfolgt, geschieht dies im Rahmen der technischen
+              Dienstleistungserbringung.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Online-Reservierung über externes Buchungssystem
+            </h2>
+            <p>
+              Für Online-Reservierungen verlinken wir auf ein externes
+              Buchungssystem von Lightspeed. Wenn Sie auf den
+              Reservierungsbutton klicken, verlassen Sie unsere Website und
+              werden auf eine externe Seite weitergeleitet.
             </p>
             <p>
-              Die Daten werden gelöscht, sobald sie für den jeweiligen Zweck nicht
-              mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten
-              bestehen.
+              Auf dieser externen Seite werden personenbezogene Daten nicht mehr
+              ausschließlich durch uns, sondern auch durch den jeweiligen
+              Anbieter des Buchungssystems verarbeitet. Für die dortige
+              Datenverarbeitung ist der jeweilige Betreiber der externen Seite
+              verantwortlich.
+            </p>
+            <p>
+              Bitte beachten Sie daher die Datenschutzhinweise des jeweiligen
+              Anbieters, bevor Sie dort eine Reservierung vornehmen.
             </p>
           </section>
 
@@ -128,11 +207,14 @@ export default function DatenschutzPage() {
               Externe Links und Instagram
             </h2>
             <p>
-              Auf unserer Website können Links zu externen Diensten, insbesondere
-              zu unserem Instagram-Profil, eingebunden sein. Beim Anklicken eines
-              solchen Links verlassen Sie unsere Website. Für die Verarbeitung
-              personenbezogener Daten auf den externen Seiten sind ausschließlich
-              deren Betreiber verantwortlich.
+              Auf unserer Website können Links zu externen Diensten eingebunden
+              sein, insbesondere zu Instagram sowie zum externen
+              Buchungssystem. Beim Anklicken eines solchen Links verlassen Sie
+              unsere Website.
+            </p>
+            <p>
+              Für die Verarbeitung personenbezogener Daten auf den externen
+              Seiten sind ausschließlich deren Betreiber verantwortlich.
             </p>
           </section>
 
@@ -141,13 +223,19 @@ export default function DatenschutzPage() {
               Cookies und ähnliche Technologien
             </h2>
             <p>
-              Es werden derzeit ausschließlich technisch notwendige Cookies
-              eingesetzt. Eine Einwilligung ist hierfür nicht erforderlich.
+              Auf dieser Website werden nach unserem derzeitigen Stand keine
+              klassischen Third-Party-Tracking-Cookies zu Werbe- oder
+              Marketingzwecken eingesetzt.
             </p>
             <p>
-              Sollten künftig weitere Cookies oder Tracking-Technologien eingesetzt
-              werden, wird diese Datenschutzerklärung entsprechend angepasst und
-              eine Einwilligung eingeholt.
+              Für Vercel Web Analytics gibt Vercel an, keine Third-Party-Cookies
+              einzusetzen und nur anonymisierte beziehungsweise aggregierte Daten
+              zur statistischen Auswertung zu verarbeiten.
+            </p>
+            <p>
+              Technisch notwendige Speicherungen oder vergleichbare technische
+              Mechanismen können im Einzelfall dennoch erforderlich sein, um die
+              Website sicher und funktionsfähig bereitzustellen.
             </p>
           </section>
 
@@ -156,10 +244,34 @@ export default function DatenschutzPage() {
               Empfänger der Daten
             </h2>
             <p>
-              Personenbezogene Daten können an technische Dienstleister,
-              insbesondere Hosting- und E-Mail-Dienstleister (Resend),
-              weitergegeben werden, soweit dies zur Bereitstellung der Website und
-              Bearbeitung von Anfragen erforderlich ist.
+              Personenbezogene Daten können an technische Dienstleister
+              weitergegeben werden, soweit dies zur Bereitstellung der Website
+              und Bearbeitung von Anfragen erforderlich ist. Dazu gehören
+              insbesondere Hosting-Dienstleister, der für den Formularversand
+              eingesetzte E-Mail-Dienstleister sowie der Anbieter der
+              eingesetzten Web-Analytics-Lösung.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Speicherdauer
+            </h2>
+            <p>
+              Wir speichern personenbezogene Daten nur so lange, wie dies für die
+              jeweiligen Verarbeitungszwecke erforderlich ist oder gesetzliche
+              Aufbewahrungspflichten bestehen.
+            </p>
+            <p>
+              Entfällt der jeweilige Zweck oder läuft eine gesetzliche
+              Aufbewahrungsfrist ab, werden die Daten entsprechend den
+              gesetzlichen Vorschriften gelöscht oder in der Verarbeitung
+              eingeschränkt.
+            </p>
+            <p>
+              Für Vercel Web Analytics gibt Vercel an, dass die zur
+              Besucherzuordnung verwendete Hash-basierte Erkennung nach 24
+              Stunden verworfen wird.
             </p>
           </section>
 
@@ -169,9 +281,17 @@ export default function DatenschutzPage() {
             </h2>
             <p>
               Sie haben nach Maßgabe der gesetzlichen Vorschriften das Recht auf
-              Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
-              Datenübertragbarkeit sowie Widerspruch gegen die Verarbeitung Ihrer
-              personenbezogenen Daten.
+              Auskunft über die zu Ihrer Person gespeicherten Daten, auf
+              Berichtigung unrichtiger Daten, auf Löschung, auf Einschränkung der
+              Verarbeitung, auf Datenübertragbarkeit sowie auf Widerspruch gegen
+              die Verarbeitung Ihrer personenbezogenen Daten. Die maßgeblichen
+              Betroffenenrechte ergeben sich insbesondere aus Art. 15 bis 21
+              DSGVO.
+            </p>
+            <p>
+              Sofern eine Verarbeitung auf einer Einwilligung beruht, haben Sie
+              zudem das Recht, diese Einwilligung jederzeit mit Wirkung für die
+              Zukunft zu widerrufen.
             </p>
             <p>
               Außerdem haben Sie das Recht, sich bei einer
@@ -185,7 +305,6 @@ export default function DatenschutzPage() {
             </h2>
             <p>Stand: März 2026</p>
           </section>
-
         </div>
       </div>
     </main>

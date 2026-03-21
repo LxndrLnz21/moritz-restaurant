@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Moritz. Restaurant in Binz – Moderne Küche & besondere Atmosphäre",
   description:
-    "Erleben Sie moderne Küche im Moritz. Genießen Sie hochwertige Speisen in stilvollem Ambiente. Jetzt Tisch reservieren.",
+    "Erleben Sie moderne deutsch-europäische Küche im Moritz. Restaurant in Binz. Hochwertige Speisen, stilvolles Ambiente und einfache Online-Reservierung.",
 };
 
 export default function Home() {
@@ -43,6 +43,18 @@ export default function Home() {
             Speisekarte ansehen
           </Link>
         </div>
+
+        <div className="mt-8 font-[var(--font-montserrat)] text-sm text-[#4D4D4D]">
+          <p>
+            Täglich ab 17:00 Uhr geöffnet ·{" "}
+            <a
+              href="tel:+4915129722874"
+              className="underline underline-offset-4 transition hover:opacity-70"
+            >
+              +49 (0)151 29722874
+            </a>
+          </p>
+        </div>
       </section>
 
       <section className="border-t border-black/10 bg-[#B7BDAF]">
@@ -77,7 +89,7 @@ export default function Home() {
                 Speisekarte
               </h3>
               <p className="mb-6 font-[var(--font-montserrat)] leading-7 text-[#4D4D4D]">
-                Entdecke unsere aktuelle Auswahl von Vorspeisen,
+                Entdecken Sie unsere aktuelle Auswahl an Vorspeisen,
                 vegetarischen Gerichten, Fisch, Fleisch und Dessert.
               </p>
             </div>
@@ -96,8 +108,8 @@ export default function Home() {
                 Reservierung
               </h3>
               <p className="mb-6 font-[var(--font-montserrat)] leading-7 text-[#4D4D4D]">
-                Reserviere deinen Tisch bequem online oder kontaktiere uns
-                direkt für deine Anfrage.
+                Reservieren Sie Ihren Tisch bequem online. Für besondere Wünsche
+                oder Gruppenanfragen nutzen Sie bitte unser Kontaktformular.
               </p>
             </div>
 
@@ -105,7 +117,7 @@ export default function Home() {
               href="/reservation"
               className="font-[var(--font-montserrat)] text-sm font-medium underline underline-offset-4"
             >
-              Jetzt anfragen
+              Jetzt reservieren
             </Link>
           </div>
 

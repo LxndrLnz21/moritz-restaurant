@@ -1,20 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-type ReservationData = {
+type ContactData = {
   name?: string;
   email?: string;
   phone?: string;
-  guests?: string;
-  date?: string;
-  time?: string;
   message?: string;
   privacy?: boolean | string;
   website?: string;
   formStartedAt?: string;
 };
 
-const ALLOWED_TIMES = ["17:30", "19:30"];
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 Minuten
 const RATE_LIMIT_MAX_REQUESTS = 5; // max. 5 Requests pro IP im Zeitfenster
 const MIN_FORM_FILL_MS = 3000; // Formular muss mindestens 3 Sekunden offen gewesen sein
@@ -25,13 +21,13 @@ type RateLimitEntry = {
 };
 
 const globalForRateLimit = globalThis as typeof globalThis & {
-  reservationRateLimit?: Map<string, RateLimitEntry>;
+  contactRateLimit?: Map<string, RateLimitEntry>;
 };
 
 const rateLimitStore =
-  globalForRateLimit.reservationRateLimit ?? new Map<string, RateLimitEntry>();
+  globalForRateLimit.contactRateLimit ?? new Map<string, RateLimitEntry>();
 
-globalForRateLimit.reservationRateLimit = rateLimitStore;
+globalForRateLimit.contactRateLimit = rateLimitStore;
 
 function escapeHtml(value: string) {
   return value
@@ -48,32 +44,13 @@ function isValidEmail(email: string) {
 
 function isValidPhone(phone: string) {
   if (!phone) return true;
-  return /^\+?[0-9]{6,15}$/.test(phone);
-}
-
-function isTodayOrFuture(dateString: string) {
-  const today = new Date();
-  const todayOnly = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-  );
-
-  const inputDate = new Date(dateString);
-  return !Number.isNaN(inputDate.getTime()) && inputDate >= todayOnly;
+  return /^\+?[0-9\s\-()/]{6,20}$/.test(phone);
 }
 
 function getClientIp(request: NextRequest) {
   const forwardedFor = request.headers.get("x-forwarded-for");
   if (!forwardedFor) return "unknown";
   return forwardedFor.split(",")[0]?.trim() || "unknown";
-}
-
-function isOnOrAfterOpeningDate(dateString: string) {
-  const openingDate = new Date("2026-04-01");
-  const inputDate = new Date(dateString);
-
-  return !Number.isNaN(inputDate.getTime()) && inputDate >= openingDate;
 }
 
 function isRateLimited(ip: string) {
@@ -99,7 +76,7 @@ function isRateLimited(ip: string) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body: ReservationData = await request.json();
+    const body: ContactData = await request.json();
     const ip = getClientIp(request);
 
     if (isRateLimited(ip)) {
@@ -112,9 +89,6 @@ export async function POST(request: NextRequest) {
     const name = body.name?.toString().trim() || "";
     const email = body.email?.toString().trim() || "";
     const phone = body.phone?.toString().trim() || "";
-    const guests = body.guests?.toString().trim() || "";
-    const date = body.date?.toString().trim() || "";
-    const time = body.time?.toString().trim() || "";
     const message = body.message?.toString().trim() || "";
     const privacy = body.privacy;
     const website = body.website?.toString().trim() || "";
@@ -144,7 +118,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!name || !email || !guests || !date || !time) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         { message: "Bitte alle Pflichtfelder ausfüllen." },
         { status: 400 }
@@ -179,7 +153,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (message.length > 1000) {
+    if (message.length > 2000) {
       return NextResponse.json(
         { message: "Die Nachricht ist zu lang." },
         { status: 400 }
@@ -200,40 +174,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const guestsNumber = Number(guests);
-    if (!Number.isInteger(guestsNumber) || guestsNumber < 1 || guestsNumber > 8) {
-      return NextResponse.json(
-        { message: "Ungültige Personenanzahl." },
-        { status: 400 }
-      );
-    }
-
-    if (!isTodayOrFuture(date)) {
-      return NextResponse.json(
-        { message: "Das Datum darf nicht in der Vergangenheit liegen." },
-        { status: 400 }
-      );
-    }
-    
-    if (!isOnOrAfterOpeningDate(date)) {
-      return NextResponse.json(
-        { message: "Reservierungen sind erst ab dem 01.04.2026 möglich." },
-        { status: 400 }
-      );
-    }
-
-    if (!ALLOWED_TIMES.includes(time)) {
-      return NextResponse.json(
-        {
-          message:
-            "Reservierungen sind aktuell nur um 17:30 oder 19:30 Uhr möglich.",
-        },
-        { status: 400 }
-      );
-    }
-
     const resendApiKey = process.env.RESEND_API_KEY;
-    const reservationToEmail = process.env.RESERVATION_TO_EMAIL;
+    const contactToEmail =
+      process.env.CONTACT_TO_EMAIL || process.env.RESERVATION_TO_EMAIL;
 
     if (!resendApiKey) {
       console.error("RESEND_API_KEY ist nicht gesetzt.");
@@ -243,8 +186,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!reservationToEmail) {
-      console.error("RESERVATION_TO_EMAIL ist nicht gesetzt.");
+    if (!contactToEmail) {
+      console.error(
+        "Weder CONTACT_TO_EMAIL noch RESERVATION_TO_EMAIL ist gesetzt."
+      );
       return NextResponse.json(
         { message: "Fehler beim Verarbeiten der Anfrage." },
         { status: 500 }
@@ -256,46 +201,38 @@ export async function POST(request: NextRequest) {
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safePhone = escapeHtml(phone);
-    const safeDate = escapeHtml(date);
-    const safeTime = escapeHtml(time);
     const safeMessage = escapeHtml(message);
 
-    console.log("Reservation mail config:", {
+    console.log("Contact mail config:", {
       hasResendApiKey: Boolean(resendApiKey),
-      reservationToEmail,
-      from: "Moritz Reservierung <onboarding@resend.dev>",
+      contactToEmail,
+      from: "Moritz Kontaktformular <onboarding@resend.dev>",
       replyTo: email,
-      guestsNumber,
-      date,
-      time,
       ip,
     });
 
     const { error } = await resend.emails.send({
-      from: "Moritz Reservierung <onboarding@resend.dev>",
-      to: reservationToEmail,
+      from: "Moritz Kontaktformular <onboarding@resend.dev>",
+      to: contactToEmail,
       replyTo: email,
-      subject: `Neue Reservierungsanfrage von ${safeName}`,
+      subject: `Neue Anfrage von ${safeName}`,
       html: `
-        <h2>Neue Reservierungsanfrage</h2>
+        <h2>Neue Kontaktanfrage</h2>
         <p><strong>Name:</strong> ${safeName}</p>
         <p><strong>E-Mail:</strong> ${safeEmail}</p>
         <p><strong>Telefon:</strong> ${safePhone || "-"}</p>
-        <p><strong>Personenanzahl:</strong> ${guestsNumber}</p>
-        <p><strong>Datum:</strong> ${safeDate}</p>
-        <p><strong>Uhrzeit:</strong> ${safeTime}</p>
-        <p><strong>Nachricht:</strong> ${safeMessage || "-"}</p>
+        <p><strong>Nachricht:</strong></p>
+        <p>${safeMessage.replace(/\n/g, "<br />")}</p>
         <p><strong>Datenschutzhinweis bestätigt:</strong> Ja</p>
       `,
-      text: `Neue Reservierungsanfrage
+      text: `Neue Kontaktanfrage
 
 Name: ${name}
 E-Mail: ${email}
 Telefon: ${phone || "-"}
-Personenanzahl: ${guestsNumber}
-Datum: ${date}
-Uhrzeit: ${time}
-Nachricht: ${message || "-"}
+Nachricht:
+${message}
+
 Datenschutzhinweis bestätigt: Ja`,
     });
 
@@ -309,11 +246,11 @@ Datenschutzhinweis bestätigt: Ja`,
     }
 
     return NextResponse.json(
-      { message: "Reservierungsanfrage erfolgreich versendet." },
+      { message: "Anfrage erfolgreich versendet." },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Fehler in /api/reservation:", error);
+    console.error("Fehler in /api/contact:", error);
 
     return NextResponse.json(
       { message: "Fehler beim Verarbeiten der Anfrage." },
