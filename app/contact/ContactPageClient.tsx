@@ -10,6 +10,8 @@ import {
   Info,
   UtensilsCrossed,
   Instagram,
+  Wallet,
+  CreditCard,
 } from "lucide-react";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -428,6 +430,17 @@ export default function ContactPageClient() {
                     <p className="text-base">Täglich ab 17:00 Uhr geöffnet</p>
                   </div>
                 </div>
+                <div className="flex items-start gap-4">
+                 <CreditCard className="mt-1 h-5 w-5 text-[#7E8F7B]" />
+                 <div>
+                    <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#7E8F7B]">
+                    Zahlungsmittel
+                    </p>
+                    <p className="text-base leading-7">
+                    Barzahlung, EC- und Kreditkarten akzeptiert.
+                    </p>
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -450,18 +463,7 @@ export default function ContactPageClient() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <Info className="mt-1 h-5 w-5" aria-hidden="true" />
-                  <div>
-                    <p className="mb-1 text-sm uppercase tracking-[0.2em] text-[#5E665B]">
-                      Hinweis
-                    </p>
-                    <p className="text-base leading-7">
-                      Es stehen keine Parkmöglichkeiten direkt am Restaurant zur
-                      Verfügung.
-                    </p>
-                  </div>
-                </div>
+                
               </div>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
