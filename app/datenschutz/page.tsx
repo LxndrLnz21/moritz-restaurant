@@ -181,13 +181,31 @@ export default function DatenschutzPage() {
 
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Datenübermittlung in Drittländer
+            </h2>
+            <p>
+              Es kann nicht ausgeschlossen werden, dass im Rahmen der Nutzung
+              unserer technischen Dienstleister, insbesondere Vercel und Resend,
+              personenbezogene Daten in Drittländer, insbesondere in die USA,
+              übertragen werden.
+            </p>
+            <p>
+              Soweit eine solche Übermittlung erfolgt, geschieht sie auf
+              Grundlage geeigneter Garantien gemäß Art. 44 ff. DSGVO,
+              insbesondere durch den Abschluss von Standardvertragsklauseln oder
+              anderer datenschutzrechtlich zulässiger Mechanismen.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
               Online-Reservierung über externes Buchungssystem
             </h2>
             <p>
               Für Online-Reservierungen verlinken wir auf ein externes
-              Buchungssystem von Lightspeed. Wenn Sie auf den
-              Reservierungsbutton klicken, verlassen Sie unsere Website und
-              werden auf eine externe Seite weitergeleitet.
+              Buchungssystem von Lightspeed. Wenn Sie auf den Reservierungsbutton
+              klicken, verlassen Sie unsere Website und werden auf eine externe
+              Seite weitergeleitet.
             </p>
             <p>
               Auf dieser externen Seite werden personenbezogene Daten nicht mehr
@@ -263,6 +281,11 @@ export default function DatenschutzPage() {
               Aufbewahrungspflichten bestehen.
             </p>
             <p>
+              Daten aus Kontaktanfragen werden in der Regel nach abschließender
+              Bearbeitung gelöscht, sofern keine gesetzlichen
+              Aufbewahrungspflichten entgegenstehen.
+            </p>
+            <p>
               Entfällt der jeweilige Zweck oder läuft eine gesetzliche
               Aufbewahrungsfrist ab, werden die Daten entsprechend den
               gesetzlichen Vorschriften gelöscht oder in der Verarbeitung
@@ -272,6 +295,19 @@ export default function DatenschutzPage() {
               Für Vercel Web Analytics gibt Vercel an, dass die zur
               Besucherzuordnung verwendete Hash-basierte Erkennung nach 24
               Stunden verworfen wird.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              SSL- bzw. TLS-Verschlüsselung
+            </h2>
+            <p>
+              Diese Website nutzt aus Sicherheitsgründen und zum Schutz der
+              Übertragung vertraulicher Inhalte, wie zum Beispiel Anfragen über
+              das Kontaktformular, eine SSL- bzw. TLS-Verschlüsselung. Eine
+              verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile
+              des Browsers mit „https://“ beginnt.
             </p>
           </section>
 
@@ -296,6 +332,17 @@ export default function DatenschutzPage() {
             <p>
               Außerdem haben Sie das Recht, sich bei einer
               Datenschutzaufsichtsbehörde zu beschweren.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Widerspruch gegen Werbe-E-Mails
+            </h2>
+            <p>
+              Der Nutzung der im Rahmen der Impressumspflicht veröffentlichten
+              Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter
+              Werbung wird hiermit widersprochen.
             </p>
           </section>
 
