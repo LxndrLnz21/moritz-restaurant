@@ -62,7 +62,7 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
           <Link
             href="/"
-            className="font-playfair text-2xl md:text-3xl"
+            className="font-playfair text-2xl font-semibold md:text-3xl"
             onClick={closeMenu}
             aria-label="Zur Startseite von Moritz."
           >
