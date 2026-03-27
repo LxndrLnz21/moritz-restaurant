@@ -110,6 +110,17 @@ function isRateLimited(ip: string) {
   return false;
 }
 
+function getEnvValue(value?: string) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function parseEmailList(value: string) {
+  return value
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+}
+
 export async function POST(request: NextRequest) {
   try {
     const contentType = request.headers.get("content-type") || "";
@@ -230,9 +241,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const contactToEmail =
-      process.env.CONTACT_TO_EMAIL || process.env.RESERVATION_TO_EMAIL;
+    const resendApiKey = getEnvValue(process.env.RESEND_API_KEY);
+    const contactToEmailRaw = getEnvValue(
+      process.env.CONTACT_TO_EMAIL || process.env.RESERVATION_TO_EMAIL
+    );
+    const contactFromEmail =
+      getEnvValue(process.env.CONTACT_FROM_EMAIL) || "onboarding@resend.dev";
 
     if (!resendApiKey) {
       console.error("RESEND_API_KEY ist nicht gesetzt.");
@@ -242,10 +256,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!contactToEmail) {
+    if (!contactToEmailRaw) {
       console.error(
         "Weder CONTACT_TO_EMAIL noch RESERVATION_TO_EMAIL ist gesetzt."
       );
+      return NextResponse.json(
+        { message: "Fehler beim Verarbeiten der Anfrage." },
+        { status: 500 }
+      );
+    }
+
+    const contactToEmail = parseEmailList(contactToEmailRaw);
+
+    if (contactToEmail.length === 0) {
+      console.error("Keine gültige Empfängeradresse gefunden.");
       return NextResponse.json(
         { message: "Fehler beim Verarbeiten der Anfrage." },
         { status: 500 }
@@ -262,14 +286,14 @@ export async function POST(request: NextRequest) {
 
     console.log("Contact mail config:", {
       hasResendApiKey: Boolean(resendApiKey),
-      hasContactToEmail: Boolean(contactToEmail),
-      from: "Moritz <onboarding@resend.dev>",
-      hasReplyTo: Boolean(email),
+      to: contactToEmail,
+      from: `Moritz <${contactFromEmail}>`,
+      replyTo: email,
       ip,
     });
 
-    const { error } = await resend.emails.send({
-      from: "Moritz <onboarding@resend.dev>",
+    const { data, error } = await resend.emails.send({
+      from: `Moritz <${contactFromEmail}>`,
       to: contactToEmail,
       replyTo: email,
       subject: `Neue Anfrage von ${subjectName}`,
@@ -294,12 +318,14 @@ Datenschutzhinweis bestätigt: Ja`,
     });
 
     if (error) {
-      console.error("Resend-Fehler:", JSON.stringify(error, null, 2));
+      console.error("Resend-Fehler:", error);
       return NextResponse.json(
         { message: "E-Mail konnte nicht versendet werden." },
         { status: 500 }
       );
     }
+
+    console.log("Resend-Erfolg:", data);
 
     return NextResponse.json(
       { message: "Anfrage erfolgreich versendet." },
