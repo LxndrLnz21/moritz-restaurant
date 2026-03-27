@@ -49,73 +49,73 @@ export default function MenuPage() {
           <MenuSection title="Vorspeisen">
             <MenuItem
               name="Mecklenburger Fischsüppchen"
-              description="Gegrillte Fischwürfel und Sanddorn"
+              description="Gegrillte Fischwürfel & Sanddorn"
               price="6,50 €"
             />
             <MenuItem
               name="Gebratene Riesengarnelen"
-              description="Limetten-Aioli und Brot"
+              description="Limetten-Aioli & Brot"
               price="9,50 €"
             />
             <MenuItem
               name="Gratinierter Ziegenkäse"
-              description="Rote Bete und Walnüsse"
+              description="Rote Bete & Walnüsse"
               price="10,50 €"
             />
             <MenuItem
               name="Burrata"
-              description="Geröstete Nüsse und Rucola"
-              price="8,00 €"
+              description="Geröstete Nüsse & Ruccola"
+              price="8 €"
             />
           </MenuSection>
 
-          <MenuSection title="Vegetarisch & Vegan">
+          <MenuSection title="Vegetarisch/Vegan">
             <MenuItem
               name="Quiche Lorraine"
-              description="Blattsalat und Walnüsse"
+              description="Blattsalat & Walnüsse"
               price="15,50 €"
             />
             <MenuItem
               name="Burrata"
-              description="Pappardelle, Spinat und Tomaten"
-              price="17,00 €"
+              description="Pappardelle, Spinat & Tomaten"
+              price="17 €"
             />
             <MenuItem
               name="Gemüsebowl (vegan)"
-              description="Tomate, Avocado, Paprika, Bulgur und veganer Frischkäse"
-              price="16,00 €"
+              description="Tomate, Avocado, Paprika, Bulgur & veganer Frischkäse"
+              price="16 €"
             />
           </MenuSection>
 
           <MenuSection title="Fisch">
             <MenuItem
               name="Gebratenes Zanderfilet"
-              description="Zucchini, Tomate und Kartoffelsoufflé"
+              description="Zucchini, Tomate & Kartoffelsoufflé"
               price="24,50 €"
             />
             <MenuItem
               name="Gebratene Riesengarnelen"
-              description="Wurzelgemüse, Pappardelle, Weißwein und Hartkäse"
+              description="Wurzelgemüse, Pappardelle, Weißwein & Grana Padano"
               price="21,50 €"
             />
             <MenuItem
               name="Pochiertes Lachsfilet"
-              description="Kokosmilch, Staudensellerie, Tomaten und Bulgur"
+              description="Kokosmilch, Staudensellerie, Tomaten & Bulgur"
               price="25,50 €"
             />
             <MenuItem
-              name='Hering nach „Matjes Art“'
-              description="Hausfrauensauce und Bratkartoffeln"
+              name='Hering nach "Matjes Art"'
+              description="Hausfrauensauce & Bratkartoffeln"
               price="18,50 €"
             />
             <MenuItem
               name="Fish & Chips"
-              description="Remoulade und Potato Dippers"
+              description="Remoulade & Potato Dippers"
               price="15,50 €"
             />
             <MenuItem
-              name="Wolfsbarsch gefüllt"
-              description="Mit Limette und Thymian, Gurkensalat und Kartoffelpüree"
+              name="Ganzer Wolfsbarsch gefüllt"
+              description="Mit Limette & Thymian, Gurkensalat & Kartoffelpüree"
               price="21,50 €"
             />
           </MenuSection>
@@ -123,27 +123,27 @@ export default function MenuPage() {
           <MenuSection title="Fleisch">
             <MenuItem
               name='Schnitzel „Wiener Art“'
-              description="Schwein, Gurkensalat und Bratkartoffeln"
+              description="Schwein, Gurkensalat & Bratkartoffeln"
               price="21,50 €"
             />
             <MenuItem
               name="Kalbsleber"
-              description="Apfel, Zwiebel und Kartoffelpüree"
+              description="Apfel, Zwiebel & Kartoffelpüree"
               price="23,50 €"
             />
             <MenuItem
               name="Geschmorte Schweinebäckchen"
-              description="Wurzelgemüse und Kartoffelpüree"
+              description="Wurzelgemüse & Kartoffelpüree"
               price="24,50 €"
             />
             <MenuItem
               name="Saltimbocca von der Perlhuhnbrust"
-              description="Geschmolzene Tomaten, Pappardelle und Hartkäse"
+              description="Geschmolzene Tomaten, Pappardelle & Grana Padano"
               price="22,50 €"
             />
             <MenuItem
               name="Wildbratwurst"
-              description="Karamellisiertes Sauerkraut und Kartoffelpüree"
+              description="Karamellisiertes Sauerkraut & Kartoffelpüree"
               price="19,50 €"
             />
           </MenuSection>
@@ -154,23 +154,23 @@ export default function MenuPage() {
             </p>
 
             <MenuItem
-              name="Hähnchengeschnetzeltes"
-              description="Mit Nudeln"
-              price="10,00 €"
+              name="Hähnchen-Nuggets"
+              description="Gemüse & Potato Dippers"
+              price="12 €"
             />
             <MenuItem
               name='Schnitzel „Wiener Art“'
-              description="Schwein, Gurkensalat und Bratkartoffeln"
-              price="12,00 €"
+              description="Schwein, Gurkensalat & Bratkartoffeln"
+              price="12 €"
             />
             <MenuItem
               name="Bolognese"
-              description="Mit Nudeln"
+              description="Nudeln"
               price="9,50 €"
             />
             <MenuItem
               name="Fischstäbchen"
-              description="Buntes Gemüse und Kartoffelpüree"
+              description="Buntes Gemüse & Kartoffelpüree"
               price="9,50 €"
             />
           </MenuSection>
@@ -178,13 +178,13 @@ export default function MenuPage() {
           <MenuSection title="Dessert">
             <MenuItem
               name="Mousse au chocolat"
-              description="Frittierte Birne, Haferflocken und Vanilleeis"
+              description="Frittierte Birne, Haferflocken & Vanilleeis"
               price="9,50 €"
             />
             <MenuItem
               name="Crème Brûlée"
-              description="Mit frischen Beeren"
-              price="7,50 €"
+              description="& frische Beeren"
+              price="8,50 €"
             />
           </MenuSection>
         </div>
@@ -201,7 +201,11 @@ function MenuSection({
   children: React.ReactNode;
 }) {
   return (
-    <section aria-labelledby={`section-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+    <section
+      aria-labelledby={`section-${title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")}`}
+    >
       <h2
         id={`section-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
         className="mb-8 font-[var(--font-playfair)] text-2xl md:text-3xl"
