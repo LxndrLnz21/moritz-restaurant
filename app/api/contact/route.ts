@@ -263,13 +263,13 @@ export async function POST(request: NextRequest) {
     console.log("Contact mail config:", {
       hasResendApiKey: Boolean(resendApiKey),
       hasContactToEmail: Boolean(contactToEmail),
-      from: "Moritz Kontaktformular <onboarding@resend.dev>",
+      from: "Moritz <restaurant.moritz@icloud.com>",
       hasReplyTo: Boolean(email),
       ip,
     });
 
     const { error } = await resend.emails.send({
-      from: "Moritz Kontaktformular <onboarding@resend.dev>",
+      from: "Moritz <restaurant.moritz@icloud.com>",
       to: contactToEmail,
       replyTo: email,
       subject: `Neue Anfrage von ${subjectName}`,
