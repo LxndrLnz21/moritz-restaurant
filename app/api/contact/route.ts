@@ -15,7 +15,7 @@ type ContactData = {
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
-const MIN_FORM_FILL_MS = 3000;
+const MIN_FORM_FILL_MS = 1500;
 
 const MAX_NAME_LENGTH = 100;
 const MAX_EMAIL_LENGTH = 200;
@@ -125,6 +125,7 @@ export async function POST(request: NextRequest) {
   try {
     const contentType = request.headers.get("content-type") || "";
     if (!contentType.toLowerCase().includes("application/json")) {
+      console.error("Contact API: Ungültiger Content-Type", { contentType });
       return NextResponse.json(
         { message: "Ungültiger Anfrageinhalt." },
         { status: 415 }
@@ -135,6 +136,7 @@ export async function POST(request: NextRequest) {
     const ip = getClientIp(request);
 
     if (isRateLimited(ip)) {
+      console.error("Contact API: Rate limit erreicht", { ip });
       return NextResponse.json(
         { message: "Zu viele Anfragen. Bitte später erneut versuchen." },
         { status: 429 }
@@ -147,31 +149,24 @@ export async function POST(request: NextRequest) {
     const message = normalizeMultilineInput(body.message);
     const privacy = body.privacy;
     const website = normalizeInput(body.website);
-    const formStartedAt = Number(body.formStartedAt || "0");
+    const formStartedAtRaw = normalizeInput(body.formStartedAt);
+    const formStartedAt = Number(formStartedAtRaw || "0");
 
     if (website) {
+      console.error("Contact API: Honeypot ausgelöst", { ip });
       return NextResponse.json(
         { message: "Anfrage konnte nicht verarbeitet werden." },
         { status: 400 }
       );
     }
 
-    if (!formStartedAt || Number.isNaN(formStartedAt)) {
-      return NextResponse.json(
-        { message: "Ungültige Anfrage." },
-        { status: 400 }
-      );
-    }
-
-    const fillDuration = Date.now() - formStartedAt;
-    if (fillDuration < MIN_FORM_FILL_MS) {
-      return NextResponse.json(
-        { message: "Anfrage wurde zu schnell gesendet." },
-        { status: 400 }
-      );
-    }
-
     if (!name || !email || !message) {
+      console.error("Contact API: Pflichtfelder fehlen", {
+        hasName: Boolean(name),
+        hasEmail: Boolean(email),
+        hasMessage: Boolean(message),
+        ip,
+      });
       return NextResponse.json(
         { message: "Bitte alle Pflichtfelder ausfüllen." },
         { status: 400 }
@@ -179,6 +174,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (privacy !== true && privacy !== "true" && privacy !== "on") {
+      console.error("Contact API: Datenschutz nicht bestätigt", {
+        privacy,
+        ip,
+      });
       return NextResponse.json(
         { message: "Bitte bestätigen Sie die Datenschutzhinweise." },
         { status: 400 }
@@ -186,6 +185,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (name.length < MIN_NAME_LENGTH) {
+      console.error("Contact API: Name zu kurz", { nameLength: name.length, ip });
       return NextResponse.json(
         { message: "Der Name ist zu kurz." },
         { status: 400 }
@@ -193,6 +193,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (message.length < MIN_MESSAGE_LENGTH) {
+      console.error("Contact API: Nachricht zu kurz", {
+        messageLength: message.length,
+        ip,
+      });
       return NextResponse.json(
         { message: "Die Nachricht ist zu kurz." },
         { status: 400 }
@@ -200,6 +204,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (name.length > MAX_NAME_LENGTH) {
+      console.error("Contact API: Name zu lang", { nameLength: name.length, ip });
       return NextResponse.json(
         { message: "Der Name ist zu lang." },
         { status: 400 }
@@ -207,6 +212,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (email.length > MAX_EMAIL_LENGTH) {
+      console.error("Contact API: E-Mail zu lang", {
+        emailLength: email.length,
+        ip,
+      });
       return NextResponse.json(
         { message: "Die E-Mail-Adresse ist zu lang." },
         { status: 400 }
@@ -214,6 +223,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (phone.length > MAX_PHONE_LENGTH) {
+      console.error("Contact API: Telefon zu lang", {
+        phoneLength: phone.length,
+        ip,
+      });
       return NextResponse.json(
         { message: "Die Telefonnummer ist zu lang." },
         { status: 400 }
@@ -221,6 +234,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (message.length > MAX_MESSAGE_LENGTH) {
+      console.error("Contact API: Nachricht zu lang", {
+        messageLength: message.length,
+        ip,
+      });
       return NextResponse.json(
         { message: "Die Nachricht ist zu lang." },
         { status: 400 }
@@ -228,6 +245,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!isValidEmail(email)) {
+      console.error("Contact API: Ungültige E-Mail", { email, ip });
       return NextResponse.json(
         { message: "Ungültige E-Mail-Adresse." },
         { status: 400 }
@@ -235,10 +253,40 @@ export async function POST(request: NextRequest) {
     }
 
     if (!isValidPhone(phone)) {
+      console.error("Contact API: Ungültige Telefonnummer", { phone, ip });
       return NextResponse.json(
         { message: "Ungültige Telefonnummer." },
         { status: 400 }
       );
+    }
+
+    if (formStartedAtRaw) {
+      if (Number.isNaN(formStartedAt) || formStartedAt <= 0) {
+        console.error("Contact API: formStartedAt ungültig", {
+          formStartedAtRaw,
+          ip,
+        });
+        return NextResponse.json(
+          { message: "Ungültige Anfrage." },
+          { status: 400 }
+        );
+      }
+
+      const fillDuration = Date.now() - formStartedAt;
+      if (fillDuration < MIN_FORM_FILL_MS) {
+        console.error("Contact API: Formular zu schnell abgesendet", {
+          fillDuration,
+          ip,
+        });
+        return NextResponse.json(
+          { message: "Anfrage wurde zu schnell gesendet." },
+          { status: 400 }
+        );
+      }
+    } else {
+      console.warn("Contact API: formStartedAt fehlt, Anfrage wird trotzdem verarbeitet", {
+        ip,
+      });
     }
 
     const resendApiKey = getEnvValue(process.env.RESEND_API_KEY);
@@ -246,7 +294,8 @@ export async function POST(request: NextRequest) {
       process.env.CONTACT_TO_EMAIL || process.env.RESERVATION_TO_EMAIL
     );
     const contactFromEmail =
-      getEnvValue(process.env.CONTACT_FROM_EMAIL) || "onboarding@resend.dev";
+      getEnvValue(process.env.CONTACT_FROM_EMAIL) ||
+      "kontakt@moritz-restaurant-binz.de";
 
     if (!resendApiKey) {
       console.error("RESEND_API_KEY ist nicht gesetzt.");
@@ -285,7 +334,6 @@ export async function POST(request: NextRequest) {
     const subjectName = name.replace(/[\r\n]+/g, " ").slice(0, 80);
 
     console.log("Contact mail config:", {
-      hasResendApiKey: Boolean(resendApiKey),
       to: contactToEmail,
       from: `Moritz <${contactFromEmail}>`,
       replyTo: email,
