@@ -1,0 +1,21 @@
+{
+  "name": "Moritz. Restaurant in Binz",
+  "short_name": "Moritz.",
+  "description": "Moderne deutsch-europäische Küche in stilvoller Atmosphäre in Binz.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F3EEE7",
+  "theme_color": "#F3EEE7",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

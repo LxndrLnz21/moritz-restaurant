@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,15 +21,21 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://moritz-restaurant-binz.de"),
+
   title: {
     default: "Moritz. Restaurant in Binz",
     template: "%s | Moritz. Restaurant",
   },
+
   description:
     "Moritz. Restaurant in Binz – moderne deutsch-europäische Küche, stilvolle Atmosphäre und besondere Genussmomente.",
+
   alternates: {
     canonical: "/",
   },
+
+  manifest: "/site.webmanifest",
+
   openGraph: {
     title: "Moritz. Restaurant in Binz",
     description:
@@ -39,24 +45,32 @@ export const metadata: Metadata = {
     locale: "de_DE",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Moritz. Restaurant in Binz",
     description:
       "Moderne deutsch-europäische Küche in stilvoller Atmosphäre. Jetzt Tisch reservieren.",
   },
+
   robots: {
     index: true,
     follow: true,
   },
+
   icons: {
     icon: [
-      { url: "/icon.png", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
       { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.png"],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#F3EEE7",
 };
 
 export default function RootLayout({
