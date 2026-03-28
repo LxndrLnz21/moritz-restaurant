@@ -26,9 +26,9 @@ export default function ImpressumPage() {
             <p>
               Tobias Moritz
               <br />
-              Granitzerstraße 41
+              Margaretenstraße 18
               <br />
-              18586 Sellin
+              18609 Binz
             </p>
           </section>
 
@@ -72,9 +72,9 @@ export default function ImpressumPage() {
             <p>
               Tobias Moritz
               <br />
-              Granitzerstraße 41
+              Margaretenstraße 18
               <br />
-              18586 Sellin
+              18609 Binz
             </p>
           </section>
 
