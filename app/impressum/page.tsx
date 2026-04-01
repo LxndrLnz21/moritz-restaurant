@@ -57,16 +57,6 @@ export default function ImpressumPage() {
 
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
-              Umsatzsteuer-ID
-            </h2>
-            <p>
-              Sofern eine Umsatzsteuer-Identifikationsnummer vorliegt, wird sie
-              hier ergänzt.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
               Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
             </h2>
             <p>
