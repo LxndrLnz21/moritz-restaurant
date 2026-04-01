@@ -26,9 +26,9 @@ export default function DatenschutzPage() {
             <p>
               Tobias Moritz
               <br />
-              Granitzerstraße 41
+              Margaretenstraße 18
               <br />
-              18586 Sellin
+              18609 Binz
               <br />
               E-Mail: restaurant.moritz@icloud.com
               <br />

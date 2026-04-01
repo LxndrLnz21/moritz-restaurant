@@ -55,6 +55,39 @@ export default function ImpressumPage() {
             </p>
           </section>
 
+          {/* ✅ NEU: EU-Streitschlichtung */}
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              EU-Streitschlichtung
+            </h2>
+            <p>
+              Die Europäische Kommission stellt eine Plattform zur
+              Online-Streitbeilegung (OS) bereit:{" "}
+              <a
+                href="https://ec.europa.eu/consumers/odr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 transition hover:opacity-70"
+              >
+                https://ec.europa.eu/consumers/odr/
+              </a>
+              <br />
+              Unsere E-Mail-Adresse finden Sie oben im Impressum.
+            </p>
+          </section>
+
+          {/* ✅ NEU: Verbraucherstreitbeilegung */}
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Verbraucherstreitbeilegung / Universalschlichtungsstelle
+            </h2>
+            <p>
+              Wir sind nicht bereit oder verpflichtet, an
+              Streitbeilegungsverfahren vor einer
+              Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
+          </section>
+
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
               Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
