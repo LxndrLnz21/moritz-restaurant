@@ -24,15 +24,23 @@ export default function DatenschutzPage() {
               Verantwortlicher
             </h2>
             <p>
+              Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
+              <br />
               Tobias Moritz
               <br />
               Margaretenstraße 18
               <br />
               18609 Binz
               <br />
-              E-Mail: restaurant.moritz@icloud.com
+              E-Mail:{" "}
+              <a href="mailto:restaurant.moritz@icloud.com" className="underline">
+              restaurant.moritz@icloud.com
+              </a>
               <br />
-              Telefon: +49 (0)151 29722874
+              Telefon:{" "}
+              <a href="tel:+4915129722874" className="underline">
+              +49 (0)151 29722874
+              </a>
             </p>
           </section>
 
@@ -60,11 +68,10 @@ export default function DatenschutzPage() {
               Hosting
             </h2>
             <p>
-              Unsere Website wird über Vercel bereitgestellt. Beim Aufruf der
-              Website können technisch erforderliche Daten verarbeitet werden,
-              insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs,
-              aufgerufene Inhalte, Browserinformationen sowie technische
-              Protokolldaten.
+              Unsere Website wird über den Hosting-Dienstleister Vercel Inc. bereitgestellt. 
+              Beim Aufruf der Website können technisch erforderliche Daten verarbeitet werden,
+              insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Inhalte, 
+              Browserinformationen sowie technische Protokolldaten.
             </p>
             <p>
               Die Verarbeitung erfolgt zum Zweck der technischen Bereitstellung,
@@ -131,6 +138,32 @@ export default function DatenschutzPage() {
 
           <section>
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
+              Google Search Console
+            </h2>
+            <p>
+              Wir nutzen die Google Search Console, einen Dienst der Google
+              Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland,
+              zur technischen Analyse und Optimierung der Auffindbarkeit unserer
+              Website in den Google-Suchergebnissen.
+            </p>
+            <p>
+              Dabei werden uns durch Google insbesondere Informationen zu
+              Suchanfragen, Impressionen, Klicks, Positionen in den
+              Suchergebnissen sowie zur technischen Indexierung unserer Website
+              in aggregierter Form bereitgestellt.
+            </p>
+            <p>
+              Diese Daten werden von Google im Rahmen der Nutzung der Google-Suche erhoben.
+              Eine unmittelbare Identifikation einzelner Personen durch uns erfolgt nicht.
+              Die Nutzung der Google Search Console erfolgt auf Grundlage von Art. 6 Abs. 1
+              lit. f DSGVO. Unser berechtigtes Interesse liegt in der Verbesserung der
+              Auffindbarkeit, technischen Stabilität und Darstellung unserer Website in den
+              Suchergebnissen.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
               Kontaktaufnahme und Anfrageformular
             </h2>
             <p>
@@ -185,9 +218,9 @@ export default function DatenschutzPage() {
             </h2>
             <p>
               Es kann nicht ausgeschlossen werden, dass im Rahmen der Nutzung
-              unserer technischen Dienstleister, insbesondere Vercel und Resend,
-              personenbezogene Daten in Drittländer, insbesondere in die USA,
-              übertragen werden.
+              unserer technischen Dienstleister, insbesondere Vercel, Resend und
+              Google, personenbezogene Daten in Drittländer, insbesondere in die
+              USA, übertragen werden.
             </p>
             <p>
               Soweit eine solche Übermittlung erfolgt, geschieht sie auf
@@ -251,6 +284,11 @@ export default function DatenschutzPage() {
               zur statistischen Auswertung zu verarbeiten.
             </p>
             <p>
+              Die Google Search Console dient der Auswertung unserer Präsenz in
+              den Google-Suchergebnissen und setzt nach unserem Einsatz auf der
+              Website selbst keine einwilligungspflichtigen Tracking-Cookies.
+            </p>
+            <p>
               Technisch notwendige Speicherungen oder vergleichbare technische
               Mechanismen können im Einzelfall dennoch erforderlich sein, um die
               Website sicher und funktionsfähig bereitzustellen.
@@ -266,8 +304,9 @@ export default function DatenschutzPage() {
               weitergegeben werden, soweit dies zur Bereitstellung der Website
               und Bearbeitung von Anfragen erforderlich ist. Dazu gehören
               insbesondere Hosting-Dienstleister, der für den Formularversand
-              eingesetzte E-Mail-Dienstleister sowie der Anbieter der
-              eingesetzten Web-Analytics-Lösung.
+              eingesetzte E-Mail-Dienstleister, der Anbieter der eingesetzten
+              Web-Analytics-Lösung sowie Google im Zusammenhang mit der Nutzung
+              der Google Search Console.
             </p>
           </section>
 
@@ -295,6 +334,11 @@ export default function DatenschutzPage() {
               Für Vercel Web Analytics gibt Vercel an, dass die zur
               Besucherzuordnung verwendete Hash-basierte Erkennung nach 24
               Stunden verworfen wird.
+            </p>
+            <p>
+              Soweit uns Daten über die Google Search Console zur Verfügung
+              gestellt werden, richtet sich deren Verfügbarkeit nach den
+              Speicher- und Bereitstellungsfristen von Google.
             </p>
           </section>
 
@@ -350,7 +394,7 @@ export default function DatenschutzPage() {
             <h2 className="mb-3 font-[var(--font-playfair)] text-2xl text-[#1A1A1A]">
               Stand
             </h2>
-            <p>Stand: März 2026</p>
+            <p>Stand: April 2026</p>
           </section>
         </div>
       </div>
