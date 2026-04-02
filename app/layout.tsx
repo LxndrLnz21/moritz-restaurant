@@ -20,7 +20,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://moritz-restaurant-binz.de"),
+  metadataBase: new URL("https://www.moritz-restaurant-binz.de"),
 
   title: {
     default: "Moritz. Restaurant in Binz",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Moritz. Restaurant in Binz – moderne deutsch-europäische Küche, stilvolle Atmosphäre und besondere Genussmomente.",
 
   alternates: {
-    canonical: "/",
+    canonical: "https://www.moritz-restaurant-binz.de/",
   },
 
   manifest: "/site.webmanifest",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Moritz. Restaurant in Binz",
     description:
       "Moderne deutsch-europäische Küche in stilvoller Atmosphäre. Jetzt Tisch reservieren.",
-    url: "https://moritz-restaurant-binz.de",
+    url: "https://www.moritz-restaurant-binz.de",
     siteName: "Moritz. Restaurant",
     locale: "de_DE",
     type: "website",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: ["/favicon.png"],
+    shortcut: ["/favicon.ico"],
   },
 };
 
