@@ -7,20 +7,17 @@
   --color-text: #4D4D4D;
 }
 
-/* Basis Reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
-  overflow-y: scroll; /* verhindert Layout-Sprünge */
+  overflow-y: scroll; 
 }
 
-/* Body Defaults */
 body {
   margin: 0;
   padding: 0;
@@ -31,12 +28,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 🔥 WICHTIG: Playfair Utility-Klasse (Fix für Navbar Mobile) */
 .font-playfair {
   font-family: var(--font-playfair), serif;
 }
 
-/* Headings */
 h1,
 h2,
 h3,
@@ -45,18 +40,15 @@ h4 {
   line-height: 1.2;
 }
 
-/* Text */
 p {
   line-height: 1.7;
 }
 
-/* Links */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Fokus-Zustände (Accessibility) */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -65,19 +57,16 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* Buttons */
 button {
   cursor: pointer;
   font-family: inherit;
 }
 
-/* Inputs */
 input,
 textarea {
   font-family: inherit;
 }
 
-/* Bilder */
 img {
   max-width: 100%;
   height: auto;
