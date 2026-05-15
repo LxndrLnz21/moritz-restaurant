@@ -48,9 +48,9 @@ export default function MenuPage() {
         <div className="space-y-16">
           <MenuSection title="Vorspeisen">
             <MenuItem
-              name="Mecklenburger Fischsüppchen"
-              description="Gegrillte Fischwürfel & Sanddorn"
-              price="6,50 €"
+              name="Mecklenburger Fischeintopf"
+              description="Fischwürfel & Sanddorn"
+              price="8,50 €"
             />
             <MenuItem
               name="Gebratene Riesengarnelen"
@@ -64,7 +64,7 @@ export default function MenuPage() {
             />
             <MenuItem
               name="Burrata"
-              description="Geröstete Nüsse & Ruccola"
+              description="Geröstete Walnüsse & Blattsalat"
               price="8 €"
             />
           </MenuSection>
@@ -77,12 +77,12 @@ export default function MenuPage() {
             />
             <MenuItem
               name="Burrata"
-              description="Pappardelle, Spinat & Tomaten"
+              description="Pappardelle, Kokosmilch, Spinat & Tomaten"
               price="17 €"
             />
             <MenuItem
-              name="Gemüsebowl (vegan)"
-              description="Tomate, Avocado, Paprika, Bulgur & veganer Frischkäse"
+              name="Rote Bete Risotto (vegan)"
+              description="Vegane Sour Cream & grüner Spargel"
               price="16 €"
             />
           </MenuSection>
@@ -90,13 +90,13 @@ export default function MenuPage() {
           <MenuSection title="Fisch">
             <MenuItem
               name="Gebratenes Zanderfilet"
-              description="Zucchini, Tomate & Kartoffelsoufflé"
+              description="Zucchini, Tomate & Rosmarinkartoffeln"
               price="24,50 €"
             />
             <MenuItem
               name="Gebratene Riesengarnelen"
               description="Wurzelgemüse, Pappardelle, Weißwein & Grana Padano"
-              price="21,50 €"
+              price="22,50 €"
             />
             <MenuItem
               name="Pochiertes Lachsfilet"
@@ -104,19 +104,19 @@ export default function MenuPage() {
               price="25,50 €"
             />
             <MenuItem
-              name='Hering nach "Matjes Art"'
+              name='Hering nach „Matjes Art“'
               description="Hausfrauensauce & Bratkartoffeln"
               price="18,50 €"
             />
             <MenuItem
               name="Fish & Chips"
               description="Remoulade & Potato Dippers"
-              price="15,50 €"
+              price="18 €"
             />
             <MenuItem
               name="Ganzer Wolfsbarsch gefüllt"
               description="Mit Limette & Thymian, Gurkensalat & Kartoffelpüree"
-              price="21,50 €"
+              price="22,50 €"
             />
           </MenuSection>
 
@@ -134,17 +134,17 @@ export default function MenuPage() {
             <MenuItem
               name="Geschmorte Schweinebäckchen"
               description="Wurzelgemüse & Kartoffelpüree"
-              price="24,50 €"
+              price="25,50 €"
             />
             <MenuItem
               name="Saltimbocca von der Perlhuhnbrust"
-              description="Geschmolzene Tomaten, Pappardelle & Grana Padano"
+              description="Wurzelgemüse, Rosmarinkartoffeln & Jus"
               price="22,50 €"
             />
             <MenuItem
-              name="Wildbratwurst"
+              name="Blutwurst & Wildbratwurst"
               description="Karamellisiertes Sauerkraut & Kartoffelpüree"
-              price="19,50 €"
+              price="21,50 €"
             />
           </MenuSection>
 
@@ -163,11 +163,7 @@ export default function MenuPage() {
               description="Schwein, Gurkensalat & Bratkartoffeln"
               price="12 €"
             />
-            <MenuItem
-              name="Bolognese"
-              description="Nudeln"
-              price="9,50 €"
-            />
+            <MenuItem name="Bolognese" description="Nudeln" price="9,50 €" />
             <MenuItem
               name="Fischstäbchen"
               description="Buntes Gemüse & Kartoffelpüree"
@@ -185,6 +181,112 @@ export default function MenuPage() {
               name="Crème Brûlée"
               description="& frische Beeren"
               price="8,50 €"
+            />
+            <MenuItem
+              name="Einfacher Espresso"
+              description="Mit kleinem Schokobrownie"
+              price="4,50 €"
+            />
+          </MenuSection>
+
+          <MenuSection title="Alkoholfrei">
+            <MenuItem
+              name="Mineralwasser"
+              description="Still oder Sprudel, 0,75 l"
+              price="4 €"
+            />
+            <MenuItem
+              name="Mineralwasser"
+              description="Still oder Sprudel, 0,25 l"
+              price="2 €"
+            />
+            <MenuItem
+              name="Fritz-Kola"
+              description="Kola light oder Kola, 0,33 l"
+              price="4 €"
+            />
+            <MenuItem
+              name="Fritz-Limo"
+              description="Orange, Ingwer-Limette, Apfel-Kirsch-Holunder, Zitrone oder Honigmelone, 0,33 l"
+              price="4 €"
+            />
+            <MenuItem
+              name="Vio Schorle"
+              description="Apfel, Rhabarber oder Schwarze Johannisbeere, 0,25 l"
+              price="3,50 €"
+            />
+            <MenuItem
+              name="Glashäger Bitterlimonade"
+              description="Tonic Water, Bitter Lemon oder Ginger Ale, 0,25 l"
+              price="3,50 €"
+            />
+            <MenuItem
+              name="Säfte"
+              description="Apfel, Orange, Banane, Kirsche oder Mango, 0,25 l"
+              price="3,50 €"
+            />
+          </MenuSection>
+
+          <MenuSection title="Heißgetränke">
+            <MenuItem name="Kaffee Crema" description=" " price="2,50 €" />
+            <MenuItem name="Espresso" description=" " price="2 €" />
+            <MenuItem name="Espresso doppelt" description=" " price="3,50 €" />
+            <MenuItem name="Cappuccino" description=" " price="3,50 €" />
+            <MenuItem name="Latte Macchiato" description=" " price="4,50 €" />
+            <MenuItem name="Heiße Schokolade" description=" " price="3,50 €" />
+            <MenuItem name="Tee" description="Nach Wahl" price="3,50 €" />
+          </MenuSection>
+
+          <MenuSection title="Aperitif">
+            <MenuItem name="Prosecco" description="0,2 l" price="4 €" />
+            <MenuItem
+              name="Martini"
+              description="Bianco, Extra Dry oder Rosso, 5 cl"
+              price="3,50 €"
+            />
+            <MenuItem name="Aperol Spritz" description="0,2 l" price="7,50 €" />
+            <MenuItem name="Wild Berry Lillet" description="0,2 l" price="7,50 €" />
+            <MenuItem
+              name="Sherry"
+              description="Fino, Medium Dry oder Sweet, 5 cl"
+              price="4,50 €"
+            />
+          </MenuSection>
+
+          <MenuSection title="Longdrinks">
+            <MenuItem name="Gin Tonic" description=" " price="7,50 €" />
+            <MenuItem
+              name="Vodka mit Fritz-Limo / Kola"
+              description=" "
+              price="7,50 €"
+            />
+            <MenuItem
+              name="Glashäger Bitterlimonade"
+              description=" "
+              price="7 €"
+            />
+            <MenuItem name="Vio Schorle" description=" " price="7 €" />
+            <MenuItem name="Rum Cola" description=" " price="7,50 €" />
+          </MenuSection>
+
+          <MenuSection title="Spirituosen">
+            <MenuItem name="Jägermeister" description="2 cl" price="2,50 €" />
+            <MenuItem name="Ramazzotti" description="2 cl" price="2,50 €" />
+            <MenuItem name="Küstennebel" description="2 cl" price="2,50 €" />
+            <MenuItem name="Linie Aquavit" description="2 cl" price="2,50 €" />
+            <MenuItem
+              name="Lehment Doppelkümmel"
+              description="2 cl"
+              price="2,50 €"
+            />
+            <MenuItem name="Berliner Luft" description="2 cl" price="2,50 €" />
+          </MenuSection>
+
+          <MenuSection title="Obstbrände">
+            <MenuItem
+              name="Schwechower Brände"
+              description="Birne, Sanddorngeist, Himbeergeist, Mirabelle, Apfel, Zwetschge oder Sauerkirsche, 2 cl"
+              price="3 €"
             />
           </MenuSection>
         </div>
@@ -237,9 +339,11 @@ function MenuItem({
           {price}
         </span>
 
-        <p className="col-span-2 mt-1 font-[var(--font-montserrat)] text-sm leading-6 text-[#5A5A5A] md:text-base">
-          {description}
-        </p>
+        {description.trim() && (
+          <p className="col-span-2 mt-1 font-[var(--font-montserrat)] text-sm leading-6 text-[#5A5A5A] md:text-base">
+            {description}
+          </p>
+        )}
       </div>
     </div>
   );
