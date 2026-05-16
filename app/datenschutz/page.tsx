@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Datenschutz | Moritz. Restaurant",
+  title: "Datenschutz",
   description:
     "Informationen zum Datenschutz im Moritz. Restaurant gemäß DSGVO.",
+  alternates: {
+    canonical: "/datenschutz",
+  },
+  openGraph: {
+    url: "/datenschutz",
+  },
 };
 
 export default function DatenschutzPage() {

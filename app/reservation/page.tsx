@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Reservierung",
   description:
     "Reservieren Sie Ihren Tisch im Moritz bequem online über unser Buchungssystem. Für besondere Wünsche oder individuelle Anfragen nutzen Sie bitte das Kontaktformular.",
+  alternates: {
+    canonical: "/reservation",
+  },
+  openGraph: {
+    url: "/reservation",
+  },
 };
 
 export default function ReservationPage() {

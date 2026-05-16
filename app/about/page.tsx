@@ -4,6 +4,12 @@ export const metadata: Metadata = {
   title: "Über uns",
   description:
     "Erfahren Sie mehr über das Moritz. Restaurant in Binz – moderne Küche, hochwertige Zutaten und ein Ort für besondere Abende.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {

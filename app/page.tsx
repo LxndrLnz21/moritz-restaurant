@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Moritz. Restaurant in Binz – Moderne Küche & besondere Atmosphäre",
   description:
     "Erleben Sie moderne deutsch-europäische Küche im Moritz. Restaurant in Binz. Hochwertige Speisen, stilvolles Ambiente und einfache Online-Reservierung.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: "/",
+  },
 };
 
 export default function Home() {

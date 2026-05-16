@@ -4,6 +4,12 @@ export const metadata: Metadata = {
   title: "Impressum",
   description:
     "Impressum des Moritz. Restaurants – rechtliche Angaben und Kontaktdaten.",
+  alternates: {
+    canonical: "/impressum",
+  },
+  openGraph: {
+    url: "/impressum",
+  },
 };
 
 export default function ImpressumPage() {

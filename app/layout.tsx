@@ -30,17 +30,12 @@ export const metadata: Metadata = {
   description:
     "Moritz. Restaurant in Binz – moderne deutsch-europäische Küche, stilvolle Atmosphäre und besondere Genussmomente.",
 
-  alternates: {
-    canonical: "https://www.moritz-restaurant-binz.de/",
-  },
-
   manifest: "/site.webmanifest",
 
   openGraph: {
     title: "Moritz. Restaurant in Binz",
     description:
       "Moderne deutsch-europäische Küche in stilvoller Atmosphäre. Jetzt Tisch reservieren.",
-    url: "https://www.moritz-restaurant-binz.de",
     siteName: "Moritz. Restaurant",
     locale: "de_DE",
     type: "website",

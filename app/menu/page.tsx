@@ -4,6 +4,12 @@ export const metadata: Metadata = {
   title: "Speisekarte",
   description:
     "Entdecken Sie die Speisekarte des Moritz. Restaurants in Binz – saisonale Gerichte, hochwertige Zutaten und moderne deutsch-europäische Küche.",
+  alternates: {
+    canonical: "/menu",
+  },
+  openGraph: {
+    url: "/menu",
+  },
 };
 
 export default function MenuPage() {
